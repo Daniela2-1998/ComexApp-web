@@ -1,0 +1,67 @@
+.icono-login {
+  height: 130px;
+  width: 30%;
+  margin-top: 5%;
+  margin-left: 35%;
+  z-index: 2;
+  position: absolute;
+  background-image: url("/src/images/logo.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+
+.liquid {
+  background-color: #2893eb;
+  position: absolute;
+  box-shadow: inset 5px -5px 25px #104e81,
+    inset -5px 0px 25px #104e81;
+}
+
+
+.liquid::after {
+  width: 800px;
+  height: 700px;
+  left: -200px;
+  top: -400px;
+  z-index: 1;
+  content: '';
+  position: absolute;
+  border-radius: 45%;
+  background: #ffffff;
+  animation: animate 5s linear 2s infinite;
+}
+
+
+.liquid::before {
+  width: 450px;
+  height: 400px;
+  left: -110px;
+  top: -380px;
+  z-index: 1;
+  border-radius: 40%;
+  position: absolute;
+  content: '';
+  background-color: rgb(68, 160, 235);
+  animation: animate 5s linear 1.8s infinite;
+}
+
+
+@keyframes animate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.botonLogin:hover {
+  background-color: #22466d;
+  color: #55a4d8;
+  border: 3px solid #22466d;
+  font-size: large;
+  font-weight: bolder;
+}
