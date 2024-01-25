@@ -12,10 +12,10 @@
 
 
 .liquid {
-  background-color: #2893eb;
+  background-color: #2893eb !important;
   position: absolute;
   box-shadow: inset 5px -5px 25px #104e81,
-    inset -5px 0px 25px #104e81;
+    inset -5px 0px 25px #104e81 !important;
 }
 
 
@@ -57,6 +57,9 @@
   }
 }
 
+.campos::placeholder{
+  color: #104e81;
+}
 
 .botonLogin:hover {
   background-color: #22466d;

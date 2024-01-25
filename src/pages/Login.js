@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { Helmet } from 'react-helmet';
-
 // ------------------------------------------------------------- IMPORTS FIREBASE --------------------------------------------------------------------------------------
 
 import { db } from '../firebase/FirebaseConfig';
@@ -17,50 +15,87 @@ import '../css/Login.css'
 
 
 function Login() {
-    return (
-        <>
-            <Helmet>
-                <title>Inicio de sesión</title>
-            </Helmet>
 
-            <ContenedorLogin className='liquid'>
-                <figure className='icono-login'></figure>
-                <Titulo>ComexApp</Titulo>
+  const [usuario, setUsuario] = useState('');
+  const [contraseña, setContraseña] = useState('');
 
-                <form>
-                    <EspacioCamposLogin className='espacio-campos'>
+  const navigate = useNavigate();
 
-                        <ContenedorOpcionLogin>
-                            <LabelCampos>Usuario:</LabelCampos>
-                            <CamposLogin
-                                className='campos'
-                                type="text"
-                                name='usuario'
-                                placeholder='Ingresa tu nombre de usuario.'
-                                required
-                            />
-                        </ContenedorOpcionLogin>
 
-                        <ContenedorOpcionLogin>
-                            <LabelCampos>Contraseña:</LabelCampos>
-                            <CamposLogin
-                                className='campos'
-                                type="password"
-                                name='contraseña'
-                                placeholder='Ingresa tu contraseña.'
-                                required
-                            />
-                        </ContenedorOpcionLogin>
-                    </EspacioCamposLogin>
+  const handleChange = (e) => {
+    if (e.target.name === 'usuario') {
+      setUsuario(e.target.value);
+    } else if (e.target.name === 'contraseña') {
+      setContraseña(e.target.value);
+    }
+  }
 
-                    <BotonLogin as="button" type='submit' className='botonLogin'>INGRESAR</BotonLogin>
-                </form>
 
-            </ContenedorLogin>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        </>
-    )
+    const auth = getAuth();
+    await signInWithEmailAndPassword(auth, usuario, contraseña)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        navigate(`/inicio/${usuario}`);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage)
+        navigate('/');
+      });
+  }
+
+
+
+  return (
+    <>
+
+      <ContenedorLogin className='liquid'>
+        <figure className='icono-login'></figure>
+        <Titulo>ComexApp</Titulo>
+
+        <form onSubmit={handleSubmit}>
+          <EspacioCamposLogin className='espacio-campos'>
+
+            <ContenedorOpcionLogin>
+              <LabelCampos>Usuario:</LabelCampos>
+              <CamposLogin
+                className='campos'
+                type="text"
+                name='usuario'
+                placeholder='Ingresa tu nombre de usuario.'
+                value={usuario}
+                onChange={handleChange}
+                required
+              />
+            </ContenedorOpcionLogin>
+
+            <ContenedorOpcionLogin>
+              <LabelCampos>Contraseña:</LabelCampos>
+              <CamposLogin
+                className='campos'
+                type="password"
+                name='contraseña'
+                placeholder='Ingresa tu contraseña.'
+                value={contraseña}
+                onChange={handleChange}
+                required
+              />
+            </ContenedorOpcionLogin>
+          </EspacioCamposLogin>
+
+          <BotonLogin as="button" type='submit' className='botonLogin'>INGRESAR</BotonLogin>
+        </form>
+
+      </ContenedorLogin>
+
+    </>
+  )
 }
+
 
 
 const ContenedorLogin = styled.div`
@@ -162,6 +197,8 @@ const CamposLogin = styled.input`
   display: flex;
   z-index: 2;
   position: absolute;
+  color: #104e81;
+  padding-left: 2%;
 `;
 
 
