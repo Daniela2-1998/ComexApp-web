@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
 // ------------------------------------------------------------- IMPORTS FIREBASE --------------------------------------------------------------------------------------
 
 import { db } from '../firebase/FirebaseConfig';
@@ -52,6 +54,12 @@ function Login() {
 
   return (
     <>
+     <HelmetProvider>
+          <Helmet>
+            <title>Inicio de sesión</title>
+            <link rel='icon' href="../images/logo.png" />
+          </Helmet>
+      </HelmetProvider>
 
       <ContenedorLogin className='liquid'>
         <figure className='icono-login'></figure>
