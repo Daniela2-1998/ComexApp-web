@@ -91,11 +91,26 @@ const ContenedorGeneralInicio = styled.div`
 
 const ContenedorSaludoEImagen = styled.div`
   display: flex;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+
 `;
 
 const ContenedorBienvenida = styled.div`
   width: 25%;
   background-color: #1A1594;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    height: 200px;
+  }
+
+  @media (max-width: 760px) {
+    width: 100%;
+    height: 200px;
+  }
 `;
 
 
