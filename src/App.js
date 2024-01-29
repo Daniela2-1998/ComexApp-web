@@ -1,11 +1,11 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-
-
 import Login from './pages/Login';
 import Inicio from './pages/Inicio';
-import Importadores from './pages/Importadores';
+import Usuarios from './pages/Usuarios';
+
+
 
 function App() {
   return (
@@ -14,8 +14,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Login />} />
-            <Route path='/inicio/:usuario' element={<Inicio />} />
-            <Route path='/importadores/${nombre}' element={<Importadores />} />
+            <Route path='/inicio/:usuario/:sesion' element={<Inicio />} />
+            <Route path='/usuarios/:nombre/:usuario/:rol/:sesion' element={<Usuarios />} />
 
           </Routes>
         </BrowserRouter>

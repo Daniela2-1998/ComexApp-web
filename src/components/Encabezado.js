@@ -1,7 +1,6 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import '../css/Inicio.css';
 
 
 
@@ -43,7 +42,8 @@ const Contenedor = styled.div`
 
 
 const Titulo = styled.h2`
-  color: #1A1594;
+  color: #1A1594 !important;
+  margin-top: 1%;
 
   @media (max-width: 760px) {
     font-size: large;
@@ -59,8 +59,9 @@ const Titulo = styled.h2`
 
 
 const NombreRol = styled.h4`
-  color: #1A1594;
+  color: #1A1594 !important;
   margin-left: 10%;
+  margin-top: 1%;
 
     
   @media (max-width: 650px) {

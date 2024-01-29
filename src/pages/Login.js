@@ -23,7 +23,6 @@ function Login() {
 
   const navigate = useNavigate();
 
-
   const handleChange = (e) => {
     if (e.target.name === 'usuario') {
       setUsuario(e.target.value);
@@ -37,10 +36,12 @@ function Login() {
     e.preventDefault();
 
     const auth = getAuth();
+
     await signInWithEmailAndPassword(auth, usuario, contraseña)
       .then((userCredential) => {
         const user = userCredential.user;
-        navigate(`/inicio/${usuario}`);
+        const sesion = user.uid;
+        navigate(`/inicio/${usuario}/${sesion}`);
       })
       .catch((error) => {
         const errorCode = error.code;

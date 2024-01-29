@@ -27,13 +27,14 @@
 }
 
 /* Para texto del Inicio.js */
-h1, h4, h5, p{
-    color: #fff;
+h2, h4, h5, p{
+    color: #fff !important;
 }
+
 
 p{
     width: 80%;
-    margin-top: 20%;
+    margin-top: 20% !important;
     margin-left: 10%;
     text-align: left;
 }

@@ -4,12 +4,40 @@ import styled from 'styled-components';
 import '../css/Inicio.css';
 
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import { db } from '../firebase/FirebaseConfig';
+import { getAuth, signOut } from 'firebase/auth';
 
 
 
-function MenuOpcionesInicio({pasarElRol}) {
+function MenuOpcionesInicio({pasarElRol, pasarNombre, pasarSesion, pasarUsuario}) {
 
   const rol = pasarElRol;
+  const nombre = pasarNombre;
+  const sesion = pasarSesion;
+  const usuario = pasarUsuario;
+
+  const navigate = useNavigate();
+
+
+  // Función ir a sección de usuarios.
+  const irAUsuaurios = () => {
+    navigate(`/usuarios/${nombre}/${usuario}/${rol}/${sesion}`)
+  }
+
+  // Función cierre de sesión.
+  const cerrarSesion = () => {
+    const usuario = getAuth().signOut();
+    if(!getAuth().currentUser){
+      console.log("Éxito")
+      console.log(getAuth().currentUser)
+      navigate('/');
+    } 
+  }
+
+
+
 
   return (
     <MenuEspacio> 
@@ -19,12 +47,12 @@ function MenuOpcionesInicio({pasarElRol}) {
         <button className='boton-opcion' as={Link} to={`/operaciones`}>Operaciones</button>
         <button className='boton-opcion' as={Link} to={`/stock`}>Stock</button>
         { rol === 'administrador' ?
-         <button className='boton-opcion' as={Link} to={`/usuarios`}>Usuarios</button>
+         <button className='boton-opcion' onClick={irAUsuaurios}>Usuarios</button>
          :
          ''
         }
       </Contenedor>
-      <button className='boton-opcion' as={Link} to={`/`}>Cerrar sesión</button>
+      <button className='boton-opcion' onClick={cerrarSesion} >Cerrar sesión</button>
     </MenuEspacio>
   )
 }

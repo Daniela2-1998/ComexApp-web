@@ -14,19 +14,21 @@ import { getDoc, doc } from "firebase/firestore";
 // Import componentes
 import Encabezado from '../components/Encabezado';
 import MenuOpcionesInicio from '../components/MenuOpcionesInicio';
+import ContenedorGeneralInicio from '../components/ContenedorGeneral';
 
-// Import páginas.
 
 
 function Inicio() {
 
   // Estados y parámetro.
   const {usuario} = useParams();
+  const {sesion} = useParams();
 
   const [nombre, setNombre] = useState('');
   const [rol, setRol] = useState('');
   const [area, setArea] = useState('');
-
+  const [sesionGuardada, setSesionGuardada] = useState('');
+  const [ usuarioRecuperado, setUsuarioRecuperado] = useState('')
   
 
   // Función de recupero de datos relevantes del usuario.
@@ -42,6 +44,19 @@ function Inicio() {
   const pasarElRol = (rol) => {
     setRol(rol);
   }
+
+  const pasarUsuario = (usuario) => {
+    setUsuarioRecuperado(usuario);
+  }
+ 
+  const pasarNombre = (nombre) => {
+    setNombre(nombre);
+  }
+
+  const pasarSesion = (sesion) => {
+    setSesionGuardada(sesion);
+  }
+
 
 
   useEffect(() => {
@@ -62,12 +77,12 @@ function Inicio() {
 
         <Encabezado pasarElRol={rol} />
 
-        <MenuOpcionesInicio pasarElRol={rol} />
+        <MenuOpcionesInicio pasarElRol={rol} pasarNombre={nombre} pasarSesion={sesion} pasarUsuario={usuario} />
 
         <ContenedorSaludoEImagen>
           <ContenedorBienvenida>
-            <h1>¡Bienvenido a ComexApp!</h1>
-            <h4>Sesión de {nombre}</h4>
+            <h2>¡Bienvenido a ComexApp!</h2>
+            <h5>Sesión de {nombre}</h5>
             <p>
               En este sistema podrás gestionar las operaciones nacionales e internacionales de la empresa, llevar una agenda personal o general de contactos 
               y administrar el stock de mercaderías, suministros y materias primas. 
@@ -84,10 +99,6 @@ function Inicio() {
 
 
 
-const ContenedorGeneralInicio = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const ContenedorSaludoEImagen = styled.div`
   display: flex;
