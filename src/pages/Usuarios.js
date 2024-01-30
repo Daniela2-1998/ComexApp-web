@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import styled from 'styled-components';
+
+import '../css/BotonRegreso.css'
 
 // Import componentes
 import ContenedorGeneralInicio from '../components/ContenedorGeneral';
@@ -23,9 +25,9 @@ function Usuarios() {
   const { rol } = useParams();
   const { usuario } = useParams();
   const { sesion } = useParams();
-  
 
   const navigate = useNavigate();
+
 
   const regresarAMenu = () => {
     navigate(`/inicio/${usuario}/${sesion}`);
@@ -49,8 +51,8 @@ function Usuarios() {
 
         {rol === 'administrador' ?
           <ContenedorTabla>
-            <TablaUsuarios />
-            <BotonRegresar onClick={regresarAMenu} ><i class="fa-solid fa-arrow-left"></i>Volver a menú</BotonRegresar>
+            <TablaUsuarios pasarUsuario={usuario} pasarRol={rol} pasarNombre={nombre} pasarSesion={sesion} />
+            <BotonRegresar onClick={regresarAMenu} className='boton-regreso' ><i class="fa-solid fa-arrow-left"></i>Volver a menú</BotonRegresar>
           </ContenedorTabla>
           :
           ''

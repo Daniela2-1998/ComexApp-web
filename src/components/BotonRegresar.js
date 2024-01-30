@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 const BotonRegresar = styled.button`
   height: 50px;
-  width: 20%;
+  width: 25%;
   color: #fff;
   background-color: #1A1594 !important;
   border-radius: 20px;
-  margin-top: 7%;
+  margin-top: 5%;
 `;
 
 

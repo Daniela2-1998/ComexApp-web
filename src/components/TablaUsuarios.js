@@ -24,9 +24,13 @@ const MySwal = withReactContent(Swal);
 
 
 
-function TablaUsuarios() {
+function TablaUsuarios({pasarRol, pasarUsuario, pasarNombre, pasarSesion}) {
 
     const [usuarios, setUsuarios] = useState([]);
+    const rol = pasarRol;
+    const usuario = pasarUsuario;
+    const nombre = pasarNombre;
+    const sesion = pasarSesion;
 
     const usuariosCollection = collection(db, "usuarios");
 
@@ -89,7 +93,7 @@ function TablaUsuarios() {
 
                         <ContenedorTituloTabla>
                             <h5>Administrar usuarios</h5>
-                            <Link to="/registrar-usuario" className='btn boton-registro'><i class="fa-solid fa-plus fa-beat fa-lg"></i>Agregar usuario</Link>
+                            <Link to={`/registrar-usuario/${usuario}/${nombre}/${rol}/${sesion}`} className='btn boton-registro'><i class="fa-solid fa-plus fa-beat fa-lg"></i>Agregar usuario</Link>
                         </ContenedorTituloTabla>
 
                         <table className='table table-ligth table-hover'>
