@@ -71,7 +71,7 @@ function TablaUsuarios({pasarRol, pasarUsuario, pasarNombre, pasarSesion}) {
           Swal.fire(
               '¡Eliminación éxitosa!',
               'El registro fue eliminado.',
-              'Éxito'
+              'success'
           )
 
       }
@@ -118,7 +118,7 @@ function TablaUsuarios({pasarRol, pasarUsuario, pasarNombre, pasarSesion}) {
                                         <RegistroTabla>{usuario.area}</RegistroTabla>
                                         <RegistroTabla>{usuario.años}</RegistroTabla>
                                         <RegistroTabla>
-                                            <Link to={`/editar-usuario/${usuario.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
+                                            <Link to={`/editar-usuario/${usuario}/${nombre}/${rol}/${sesion}/${usuario.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
                                             <button onClick={() => { confirmarEliminar(usuario.id) }} className="btn btn-danger"><i className="fa-solid fa-trash"></i></button>
                                         </RegistroTabla>
                                     </tr>

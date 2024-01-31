@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
@@ -7,8 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 // Imports firebase
 import { db } from '../firebase/FirebaseConfig';
 
-import { doc, setDoc } from 'firebase/firestore';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 // Imports componentes
 import SelectRol from '../components/SelectRol';
@@ -24,18 +23,22 @@ import Alerta from '../components/Alerta';
 
 
 
-function RegistrarUsuario() {
+function EditarUsuario() {
 
     const { usuario } = useParams();
     const { nombre } = useParams();
     const { rol } = useParams();
     const { sesion } = useParams();
 
+    const { id } = useParams();
+
+
     const [nombreUsuario, setNombreUsuario] = useState('');
     const [mail, setMail] = useState('');
     const [contraseña, setContraseña] = useState('');
     const [celular, setCelular] = useState('');
     const [años, setAños] = useState('');
+
 
     const [rolUsuario, setRolUsuario] = useState('administrador');
     const [area, setArea] = useState('general');
@@ -45,68 +48,68 @@ function RegistrarUsuario() {
     const [estadoAlerta, cambiarEstadoAlerta] = useState(false);
     const [alerta, cambiarAlerta] = useState('');
 
+
     // Función volver atrás.
     const volverAUsuarios = () => {
         navigate(`/usuarios/${nombre}/${usuario}/${rol}/${sesion}`);
     }
 
 
-    // Función para almacenar usuario.
-    const almacenar = async (e) => {
-        e.preventDefault();
+    // Función recupero usuario específico.
+    const obtenerUsuarioById = async (id) => {
+        // Recuperación del usuario según ID.
+        const usuarIoFirebase = await getDoc(doc(db, "usuarios", id));
 
-        // Verificación de que los campos no estén vacíos.
-        if (nombreUsuario === '' || mail === '' || contraseña === '' || celular === '' || años === '') {
-            cambiarEstadoAlerta(true);
-            cambiarAlerta({
-                tipo: 'error',
-                mensaje: 'Debes completar todos los campos.'
-            });
-            return;
+        // Si hay usuario, se recupera la información y se la guarda en un estado para usarla en los campos.
+        if (usuarIoFirebase.exists()) {
+            setNombreUsuario(usuarIoFirebase.data().nombre);
+            setMail(usuarIoFirebase.data().mail);
+            setContraseña(usuarIoFirebase.data().contraseña);
+            setCelular(usuarIoFirebase.data().celular);
+            setAños(usuarIoFirebase.data().años);
+            setRolUsuario(usuarIoFirebase.data().rol);
+            setArea(usuarIoFirebase.data().area);
+        } else {
+            console.log("No existe el usuario solicitado.");
         }
-
-
-        // Verificación de mail válido como usuario único.
-        const expresionRegularMail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
-
-        if (!expresionRegularMail.test(mail)) {
-            cambiarEstadoAlerta(true);
-            cambiarAlerta({
-                tipo: 'error',
-                mensaje: "Por favor ingresa un mail válido para el usuario."
-            });
-            return;
-        }
-
-        // Verificación de que la contraseña tenga más de 6 caracteres.
-        if (contraseña.length < 6) {
-            cambiarEstadoAlerta(true);
-            cambiarAlerta({
-                tipo: 'error',
-                mensaje: "La contraseña debe tener al menos 6 caracteres."
-            });
-            return;
-        }
-
-        // Vinculación con los campos.
-        await setDoc(doc(db, "usuarios", mail), { nombre: nombreUsuario, mail: mail, contraseña: contraseña, celular: celular, años: años, rol: rolUsuario, area: area });
-
-        // Creación de usuario de autenticación.
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, mail, contraseña)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user);
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode + " - " + errorMessage)
-                // ..
-            });
-        navigate(`/usuarios/${nombre}/${usuario}/${rol}/${sesion}`);
     }
 
+    // La función se ejecuta una única vez al abrir la página.
+    useEffect(() => {
+        obtenerUsuarioById(id)
+    }, []);
+
+        // Función para actualizar la información del usuario.
+        const actualizarUsuario = async (e) => {
+            // Evita que se recargue la página en caso de error.
+            e.preventDefault();
+    
+            const expresionRegularMail = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
+            
+            if (!expresionRegularMail.test(mail)) {
+                cambiarEstadoAlerta(true);
+                cambiarAlerta({
+                    tipo: 'error',
+                    mensaje: "Por favor ingresa un mail válido para el usuario."
+                });
+                return;
+            }
+            
+            // Verificación de que la contraseña tenga más de 6 caracteres.
+            if(contraseña.length  < 6){
+                cambiarEstadoAlerta(true);
+                cambiarAlerta({
+                    tipo: 'error',
+                    mensaje: "La contraseña debe tener al menos 6 caracteres."
+                });
+                return;
+            }
+    
+            const user = doc(db, "usuarios", id)
+            const data = { nombre: nombreUsuario, mail: mail, contraseña: contraseña, celular: celular, años: años, rol: rolUsuario, area: area };
+            await updateDoc(user, data);
+            navigate(`/usuarios/${nombre}/${usuario}/${rol}/${sesion}`);
+        }
 
 
     return (
@@ -123,7 +126,7 @@ function RegistrarUsuario() {
                     <h1>Agregar usuario</h1>
                 </ContenedorTituloRegistro>
 
-                <FormularioRegistro onSubmit={almacenar}>
+                <FormularioRegistro onSubmit={actualizarUsuario}>
 
                     <ContenedorCamposRegistro>
                         <TituloCamposRegistro>Nombre y apellido:</TituloCamposRegistro>
@@ -208,4 +211,4 @@ function RegistrarUsuario() {
     )
 }
 
-export default RegistrarUsuario;
+export default EditarUsuario;

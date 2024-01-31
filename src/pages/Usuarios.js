@@ -8,7 +8,6 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import styled from 'styled-components';
 
-import '../css/BotonRegreso.css'
 
 // Import componentes
 import ContenedorGeneralInicio from '../components/ContenedorGeneral';

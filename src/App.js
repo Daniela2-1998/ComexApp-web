@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Inicio from './pages/Inicio';
 import Usuarios from './pages/Usuarios';
 import RegistrarUsuario from './pages/RegistrarUsuario';
+import EditarUsuario from './pages/EditarUsuario';
 
 
 
@@ -15,9 +16,12 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Login />} />
-            <Route path='/registrar-usuario/:usuario/:nombre/:rol/:sesion' element={<RegistrarUsuario />} />
+
             <Route path='/inicio/:usuario/:sesion' element={<Inicio />} />
+
             <Route path='/usuarios/:nombre/:usuario/:rol/:sesion' element={<Usuarios />} />
+            <Route path='/registrar-usuario/:usuario/:nombre/:rol/:sesion' element={<RegistrarUsuario />} />
+            <Route path='/editar-usuario/:usuario/:nombre/:rol/:sesion/:id' element={<EditarUsuario />} />
 
           </Routes>
         </BrowserRouter>

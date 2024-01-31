@@ -8,6 +8,11 @@ const BotonRegresar = styled.button`
   background-color: #1A1594 !important;
   border-radius: 20px;
   margin-top: 5%;
+
+  &:hover {
+    background-color: #100d58 !important;
+    font-size: large;
+  }
 `;
 
 
