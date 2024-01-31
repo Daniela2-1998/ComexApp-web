@@ -109,16 +109,16 @@ function TablaUsuarios({pasarRol, pasarUsuario, pasarNombre, pasarSesion}) {
                                 </tr>
                             </thead>
                             <tbody className='borde-tabla'>
-                                {usuarios.map((usuario) => (
-                                    <tr key={usuario.id}>
-                                        <RegistroTabla>{usuario.nombre}</RegistroTabla>
-                                        <RegistroTabla>{usuario.mail}</RegistroTabla>
-                                        <RegistroTabla>{usuario.celular}</RegistroTabla>
-                                        <RegistroTabla>{usuario.rol}</RegistroTabla>
-                                        <RegistroTabla>{usuario.area}</RegistroTabla>
-                                        <RegistroTabla>{usuario.años}</RegistroTabla>
+                                {usuarios.map((usuar) => (
+                                    <tr key={usuar.id}>
+                                        <RegistroTabla>{usuar.nombre}</RegistroTabla>
+                                        <RegistroTabla>{usuar.mail}</RegistroTabla>
+                                        <RegistroTabla>{usuar.celular}</RegistroTabla>
+                                        <RegistroTabla>{usuar.rol}</RegistroTabla>
+                                        <RegistroTabla>{usuar.area}</RegistroTabla>
+                                        <RegistroTabla>{usuar.años}</RegistroTabla>
                                         <RegistroTabla>
-                                            <Link to={`/editar-usuario/${usuario}/${nombre}/${rol}/${sesion}/${usuario.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
+                                            <Link to={`/editar-usuario/${usuario}/${nombre}/${rol}/${sesion}/${usuar.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
                                             <button onClick={() => { confirmarEliminar(usuario.id) }} className="btn btn-danger"><i className="fa-solid fa-trash"></i></button>
                                         </RegistroTabla>
                                     </tr>
