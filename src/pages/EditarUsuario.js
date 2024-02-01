@@ -123,7 +123,7 @@ function EditarUsuario() {
 
             <ContenedorFormulario>
                 <ContenedorTituloRegistro>
-                    <h1>Agregar usuario</h1>
+                    <h1>Editar usuario</h1>
                 </ContenedorTituloRegistro>
 
                 <FormularioRegistro onSubmit={actualizarUsuario}>
@@ -192,7 +192,7 @@ function EditarUsuario() {
                     </EspacioSelectsRegistro>
 
                     <ContenedorBotonesRegistro>
-                        <BotonIngresoRegistro typeof='submit'>Ingresar</BotonIngresoRegistro>
+                        <BotonIngresoRegistro typeof='submit'>Editar</BotonIngresoRegistro>
                         <BotonRegresar onClick={volverAUsuarios}>Volver a usuarios</BotonRegresar>
                     </ContenedorBotonesRegistro>
 

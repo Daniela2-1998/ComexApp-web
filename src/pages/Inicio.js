@@ -21,15 +21,15 @@ import ContenedorGeneralInicio from '../components/ContenedorGeneral';
 function Inicio() {
 
   // Estados y parámetro.
-  const {usuario} = useParams();
-  const {sesion} = useParams();
+  const { usuario } = useParams();
+  const { sesion } = useParams();
 
   const [nombre, setNombre] = useState('');
   const [rol, setRol] = useState('');
   const [area, setArea] = useState('');
   const [sesionGuardada, setSesionGuardada] = useState('');
-  const [ usuarioRecuperado, setUsuarioRecuperado] = useState('')
-  
+  const [usuarioRecuperado, setUsuarioRecuperado] = useState('')
+
 
   // Función de recupero de datos relevantes del usuario.
   const recuperarNombreRolYArea = async (usuario) => {
@@ -48,7 +48,7 @@ function Inicio() {
   const pasarUsuario = (usuario) => {
     setUsuarioRecuperado(usuario);
   }
- 
+
   const pasarNombre = (nombre) => {
     setNombre(nombre);
   }
@@ -81,11 +81,13 @@ function Inicio() {
 
         <ContenedorSaludoEImagen>
           <ContenedorBienvenida>
-            <h2>¡Bienvenido a ComexApp!</h2>
-            <h5>Sesión de {nombre}</h5>
+            <TextoBienvenida>¡Bienvenido a ComexApp!</TextoBienvenida>
+            <ContenedorNombre>
+              <NombreUsuario>Sesión de {nombre}</NombreUsuario>
+            </ContenedorNombre>
             <p>
-              En este sistema podrás gestionar las operaciones nacionales e internacionales de la empresa, llevar una agenda personal o general de contactos 
-              y administrar el stock de mercaderías, suministros y materias primas. 
+              En este sistema podrás gestionar las operaciones nacionales e internacionales de la empresa, llevar una agenda personal o general de contactos
+              y administrar el stock de mercaderías, suministros y materias primas.
             </p>
           </ContenedorBienvenida>
 
@@ -111,19 +113,44 @@ const ContenedorSaludoEImagen = styled.div`
 
 const ContenedorBienvenida = styled.div`
   width: 25%;
-  background-color: #1A1594;
+  background: linear-gradient(0deg, #1A1594, #1A1594 30%,#257cb6);
 
   @media (max-width: 900px) {
     width: 100%;
-    height: 200px;
+    height: 350px;
   }
 
   @media (max-width: 760px) {
     width: 100%;
-    height: 200px;
   }
+
 `;
 
+
+const TextoBienvenida = styled.h2`
+  margin-top: 5%;
+`;
+
+
+const ContenedorNombre = styled.div`
+  width: 90%;
+  height: 40px;
+  margin-top: 7%;
+  margin-left: 5%;
+  padding-top: 1%;
+  border-radius: 20px;
+  background: linear-gradient(0deg, #353536, #474747 30%,#878787);
+
+`;
+
+const NombreUsuario = styled.h4`
+
+  @media (max-width: 1400px) {
+    font-size: medium;
+    color: red;
+  }
+
+`;
 
 
 export default Inicio;

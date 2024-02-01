@@ -5,7 +5,7 @@ const ContenedorFormulario = styled.div`
   height: 670px;
   margin-top: 1%;
   margin-left: 30%;
-  border: 2px solid grey;
+  border: 2px dashed #1A1594;
   border-radius: 20px
 `;
 
@@ -14,7 +14,7 @@ const ContenedorTituloRegistro = styled.div`
   height: 60px;
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
-  background-color: #1A1594;
+  background-image: -webkit-linear-gradient(144deg,#1A1594, #1A1594 30%,#257cb6);
   color: #fff;
 `;
 
@@ -71,7 +71,7 @@ const BotonIngresoRegistro = styled.button`
   width: 25%;
   padding: 1.5%;
   color: #fff;
-  background-color: #1A1594 !important;
+  background-image: -webkit-linear-gradient(144deg,#1A1594, #1A1594 30%,#257cb6);
   border-radius: 20px;
   margin-top: 5%;
 

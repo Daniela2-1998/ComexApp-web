@@ -52,9 +52,14 @@ p{
 
 @media (max-width: 900px) {
 
+    .logo{
+        margin-left: 10%;
+        margin-right: -5%;
+    }  
+
     p{
         width: 90%;
-        margin-top: 0%;
+        margin-top: 5% !important;
         margin-left: 5%;
         text-align: left;
         font-size: 16px;
@@ -122,4 +127,5 @@ p{
         height: 250px;
         background-size: contain;
     }
+
 }
