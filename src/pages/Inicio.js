@@ -143,7 +143,7 @@ const ContenedorNombre = styled.div`
 
 `;
 
-const NombreUsuario = styled.h4`
+const NombreUsuario = styled.h5`
 
   @media (max-width: 1400px) {
     font-size: medium;

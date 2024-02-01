@@ -172,7 +172,7 @@ function RegistrarUsuario() {
 
                     <EspacioSelectsRegistro>
                         <ContenedorCamposRegistro>
-                            <TituloCamposRegistro>Cargo/área de trabajo:</TituloCamposRegistro>
+                            <TituloCamposRegistro>Área:</TituloCamposRegistro>
                             <SelectArea
                                 area={area}
                                 setArea={setArea}

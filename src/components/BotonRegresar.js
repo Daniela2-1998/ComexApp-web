@@ -13,6 +13,11 @@ const BotonRegresar = styled.button`
     background-color: #100d58 !important;
     font-size: large;
   }
+
+  @media (max-width: 900px) {
+    width: 45%;
+  }
+
 `;
 
 

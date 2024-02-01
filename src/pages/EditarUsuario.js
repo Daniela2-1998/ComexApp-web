@@ -151,7 +151,7 @@ function EditarUsuario() {
                         <CamposRegistro
                             value={contraseña}
                             onChange={(e) => setContraseña(e.target.value)}
-                            type="text"
+                            type="password"
                         />
                     </ContenedorCamposRegistro>
 

@@ -6,7 +6,13 @@ const ContenedorFormulario = styled.div`
   margin-top: 1%;
   margin-left: 30%;
   border: 2px dashed #1A1594;
-  border-radius: 20px
+  border-radius: 20px;
+
+  @media (max-width: 760px) {
+    width: 70%;
+    margin-left: 15%;
+    background-color: pink;
+  }
 `;
 
 const ContenedorTituloRegistro = styled.div`
@@ -57,6 +63,11 @@ const EspacioSelectsRegistro = styled.div`
   margin-left: 1%;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 760px) {
+    height: 130px;
+    flex-direction: column;
+  }
 `;
 
 const ContenedorBotonesRegistro = styled.div`
@@ -73,11 +84,17 @@ const BotonIngresoRegistro = styled.button`
   color: #fff;
   background-image: -webkit-linear-gradient(144deg,#1A1594, #1A1594 30%,#257cb6);
   border-radius: 20px;
+  border: none;
   margin-top: 5%;
 
   &:hover {
     background-color: #100d58 !important;
     font-size: large;
+  }
+
+
+  @media (max-width: 900px) {
+    width: 45%;
   }
 `;
 
