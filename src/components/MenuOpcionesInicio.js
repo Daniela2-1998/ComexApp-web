@@ -20,9 +20,14 @@ function MenuOpcionesInicio({pasarElRol, pasarNombre, pasarSesion, pasarUsuario}
   const navigate = useNavigate();
 
 
+  // Función ir a sección de comercio exterior.
+  const irAComex = () => {
+    navigate(`/comercio-exterior/${nombre}/${usuario}/${rol}/${sesion}`);
+  }
+
   // Función ir a sección de usuarios.
   const irAUsuaurios = () => {
-    navigate(`/usuarios/${nombre}/${usuario}/${rol}/${sesion}`)
+    navigate(`/usuarios/${nombre}/${usuario}/${rol}/${sesion}`);
   }
 
   // Función cierre de sesión.
@@ -41,7 +46,7 @@ function MenuOpcionesInicio({pasarElRol, pasarNombre, pasarSesion, pasarUsuario}
   return (
     <MenuEspacio> 
       <Contenedor>
-        <button className='boton-opcion' as={Link} to={`/comercio-exterior`}>Comercio exterior</button>
+        <button className='boton-opcion' onClick={irAComex}>Comercio exterior</button>
         <button className='boton-opcion' as={Link} to={`/comercio-local`}>Comercio local</button>
         <button className='boton-opcion' as={Link} to={`/operaciones`}>Operaciones</button>
         <button className='boton-opcion' as={Link} to={`/stock`}>Stock</button>

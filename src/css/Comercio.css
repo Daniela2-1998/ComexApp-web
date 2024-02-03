@@ -1,0 +1,43 @@
+.imagen{
+    width: 100%;
+    height: 300px;
+    margin-top: 7%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+
+.imagen-exportadores{
+    background-image: url("../images/exportaciones.webp");
+}
+
+.imagen-importadores{
+    background-image: url("../images/importaciones.avif");
+}
+
+.imagen-despachantes{
+    background-image: url("../images/despachantes.jpg");
+    width: 95%;
+    margin-left: 2%;
+}
+
+.imagen-logistica{
+    background-image: url("../images/logistica.png");
+    width: 90%;
+    margin-left: 5%;
+}
+
+.imagen-contenedores{
+    background-image: url("../images/contenedores.jpg");
+    width: 90%;
+    margin-left: 5%;
+}
+
+
+.imagen-mercaderia{
+    background-image: url("../images/mercaderia.webp");
+}
+
+.boton{
+    
+}

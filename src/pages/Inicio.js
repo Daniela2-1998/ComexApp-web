@@ -103,6 +103,7 @@ function Inicio() {
 
 
 const ContenedorSaludoEImagen = styled.div`
+  width: 100%;
   display: flex;
 
   @media (max-width: 900px) {
@@ -140,7 +141,6 @@ const ContenedorNombre = styled.div`
   padding-top: 1%;
   border-radius: 20px;
   background: linear-gradient(0deg, #353536, #474747 30%,#878787);
-
 `;
 
 const NombreUsuario = styled.h5`
