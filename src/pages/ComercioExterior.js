@@ -54,18 +54,18 @@ function ComercioExterior() {
 
                         <CardOpcion1>
                             <CardOpcionTitulo>Exportadores</CardOpcionTitulo>
-                            <figure className='imagen imagen-exportadores'></figure>
+                            <figure className='imagen2 imagen-exportadores'></figure>
                             <button className='boton'>Acceder</button>
                         </CardOpcion1>
 
                         <CardOpcion2>
                             <CardOpcionTitulo>Importadores</CardOpcionTitulo>
-                            <figure className='imagen imagen-importadores'></figure>
+                            <figure className='imagen2 imagen-importadores'></figure>
                         </CardOpcion2>
 
                         <CardOpcion3>
                             <CardOpcionTitulo>Despachantes</CardOpcionTitulo>
-                            <figure className='imagen imagen-despachantes'></figure>
+                            <figure className='imagen2 imagen-despachantes'></figure>
                         </CardOpcion3>
 
                     </EspacioDeOpciones>
@@ -79,17 +79,17 @@ function ComercioExterior() {
 
                         <CardOpcion1>
                             <CardOpcionTitulo>Transportes</CardOpcionTitulo>
-                            <figure className='imagen imagen-logistica'></figure>
+                            <figure className='imagen2 imagen-logistica'></figure>
                         </CardOpcion1>
 
                         <CardOpcion2>
                             <CardOpcionTitulo>Contenedores</CardOpcionTitulo>
-                            <figure className='imagen imagen-contenedores'></figure>
+                            <figure className='imagen2 imagen-contenedores'></figure>
                         </CardOpcion2>
 
                         <CardOpcion3>
                             <CardOpcionTitulo>Mercadería</CardOpcionTitulo>
-                            <figure className='imagen imagen-mercaderia'></figure>
+                            <figure className='imagen2 imagen-mercaderia'></figure>
                         </CardOpcion3>
 
                     </EspacioDeOpciones>
