@@ -28,9 +28,7 @@
 }
 
 .imagen-contenedores{
-    background-image: url("../images/contenedores.jpg");
-    width: 90%;
-    margin-left: 5%;
+    background-image: url("../images/contenedores.webp");
 }
 
 
@@ -38,6 +36,27 @@
     background-image: url("../images/mercaderia.webp");
 }
 
-.boton{
-    
+.boton-a-inicio{
+    margin-top: -5% !important;
+    margin-left: 37%;
 }
+
+
+
+@media (max-width: 1100px) {
+    
+    .boton-a-inicio{
+        margin-top: -5%;
+        margin-bottom: 5%;
+    }
+}
+
+
+@media (max-width: 900px) {
+    
+    .boton-a-inicio{
+        margin-left: 27%;
+    }
+}
+
+

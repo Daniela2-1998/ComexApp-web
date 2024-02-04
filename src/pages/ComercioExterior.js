@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
-import styled from 'styled-components';
+import { ContenedorOpciones, EspacioDeOpciones, CardOpcion1, CardOpcion2, CardOpcion3, CardOpcionTitulo, CardBoton } from '../components/ElementosComercio';
 import '../css/Comercio.css';
 
 import ContenedorGeneralInicio from '../components/ContenedorGeneral';
@@ -55,17 +55,19 @@ function ComercioExterior() {
                         <CardOpcion1>
                             <CardOpcionTitulo>Exportadores</CardOpcionTitulo>
                             <figure className='imagen2 imagen-exportadores'></figure>
-                            <button className='boton'>Acceder</button>
+                            <CardBoton>Acceder</CardBoton>
                         </CardOpcion1>
 
                         <CardOpcion2>
                             <CardOpcionTitulo>Importadores</CardOpcionTitulo>
                             <figure className='imagen2 imagen-importadores'></figure>
+                            <CardBoton>Acceder</CardBoton>
                         </CardOpcion2>
 
                         <CardOpcion3>
                             <CardOpcionTitulo>Despachantes</CardOpcionTitulo>
                             <figure className='imagen2 imagen-despachantes'></figure>
+                            <CardBoton>Acceder</CardBoton>
                         </CardOpcion3>
 
                     </EspacioDeOpciones>
@@ -80,85 +82,31 @@ function ComercioExterior() {
                         <CardOpcion1>
                             <CardOpcionTitulo>Transportes</CardOpcionTitulo>
                             <figure className='imagen2 imagen-logistica'></figure>
+                            <CardBoton>Acceder</CardBoton>
                         </CardOpcion1>
 
                         <CardOpcion2>
                             <CardOpcionTitulo>Contenedores</CardOpcionTitulo>
                             <figure className='imagen2 imagen-contenedores'></figure>
+                            <CardBoton>Acceder</CardBoton>
                         </CardOpcion2>
 
                         <CardOpcion3>
                             <CardOpcionTitulo>Mercadería</CardOpcionTitulo>
                             <figure className='imagen2 imagen-mercaderia'></figure>
+                            <CardBoton>Acceder</CardBoton>
                         </CardOpcion3>
 
                     </EspacioDeOpciones>
 
                 </ContenedorOpciones>
 
+                <BotonRegresar className='boton-a-inicio' onClick={regresarAMenu}>Inicio</BotonRegresar>
             </ContenedorGeneralInicio>
         </>
     )
 }
 
 
-const ContenedorOpciones = styled.div`
-  width: 100%;
-  height: 650px;
-  margin-top: 5%;
-`;
 
-
-const EspacioDeOpciones = styled.div`
-  width: 100%;
-  height: 400px;
-  background: -webkit-linear-gradient(144deg,#1A1594, #1A1594 30%,#257cb6);
-`;
-
-
-const CardOpcion1 = styled.div`
-  width: 25%;
-  height: 400px;
-  margin-top: 10%;
-  margin-left: 7%;
-  padding: 2%;
-  border: 2px solid #fff;
-  border-radius: 20px;
-  position: absolute;
-  background-color: #242424;
-`;
-
-const CardOpcion2 = styled.div`
-  width: 25%;
-  height: 400px;
-  margin-top: 10%;
-  margin-left: 37%;
-  padding: 2%;
-  border: 2px solid #fff;
-  border-radius: 20px;
-  position: absolute;
-  background-color: #242424;
-`;
-
-
-const CardOpcion3 = styled.div`
-  width: 25%;
-  height: 400px;
-  margin-top: 10%;
-  margin-left: 67%;
-  padding: 2%;
-  border: 2px solid #fff;
-  border-radius: 20px;
-  position: absolute;
-  background-color: #242424;
-`;
-
-
-
-const CardOpcionTitulo = styled.h3`
-  font-size: 2rem;
-  color: #fff;
-  text-align: center;
-`;
-
-export default ComercioExterior
+export default ComercioExterior;
