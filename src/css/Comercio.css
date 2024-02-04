@@ -43,6 +43,34 @@
 
 
 
+.imagen-vendedores{
+    background-image: url("../images/vendedores.jpg");
+}
+
+.imagen-compradores{
+    background-image: url("../images/compradores.jpg");
+    width: 90%;
+    margin-left: 5%;
+}
+
+.imagen-proveedores{
+    background-image: url("../images/proveedores.png");
+    width: 90%;
+    margin-left: 5%;
+}
+
+.imagen-transporte{
+    background-image: url("../images/transporte.jpg");
+}
+
+.imagen-suministros{
+    background-image: url("../images/materiaprima.jpg");
+    width: 85%;
+    margin-left: 7%;
+}
+
+
+
 @media (max-width: 1100px) {
     
     .boton-a-inicio{

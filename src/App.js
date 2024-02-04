@@ -5,10 +5,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Inicio from './pages/Inicio';
 import ComercioExterior from './pages/ComercioExterior';
+import ComercioNacional from './pages/ComercioNacional';
 import Usuarios from './pages/Usuarios';
 import RegistrarUsuario from './pages/RegistrarUsuario';
 import EditarUsuario from './pages/EditarUsuario';
-
 
 
 
@@ -23,6 +23,8 @@ function App() {
             <Route path='/inicio/:usuario/:sesion' element={<Inicio />} />
 
             <Route path='/comercio-exterior/:nombre/:usuario/:rol/:sesion' element={<ComercioExterior />} />
+
+            <Route path='/comercio-nacional/:nombre/:usuario/:rol/:sesion' element={<ComercioNacional />} />
 
             <Route path='/usuarios/:nombre/:usuario/:rol/:sesion' element={<Usuarios />} />
             <Route path='/registrar-usuario/:usuario/:nombre/:rol/:sesion' element={<RegistrarUsuario />} />

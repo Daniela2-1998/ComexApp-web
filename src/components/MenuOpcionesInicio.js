@@ -25,6 +25,11 @@ function MenuOpcionesInicio({pasarElRol, pasarNombre, pasarSesion, pasarUsuario}
     navigate(`/comercio-exterior/${nombre}/${usuario}/${rol}/${sesion}`);
   }
 
+   // Función ir a sección de comercio nacional.
+   const irAComnac = () => {
+    navigate(`/comercio-nacional/${nombre}/${usuario}/${rol}/${sesion}`);
+  }
+
   // Función ir a sección de usuarios.
   const irAUsuaurios = () => {
     navigate(`/usuarios/${nombre}/${usuario}/${rol}/${sesion}`);
@@ -47,7 +52,7 @@ function MenuOpcionesInicio({pasarElRol, pasarNombre, pasarSesion, pasarUsuario}
     <MenuEspacio> 
       <Contenedor>
         <button className='boton-opcion' onClick={irAComex}>Comercio exterior</button>
-        <button className='boton-opcion' as={Link} to={`/comercio-local`}>Comercio local</button>
+        <button className='boton-opcion' onClick={irAComnac}>Comercio local</button>
         <button className='boton-opcion' as={Link} to={`/operaciones`}>Operaciones</button>
         <button className='boton-opcion' as={Link} to={`/stock`}>Stock</button>
         { rol === 'administrador' ?
