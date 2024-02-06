@@ -25,6 +25,10 @@ function ComercioExterior() {
     const navigate = useNavigate();
 
 
+    const aMercaderias = () => {
+        navigate(`/comercio-exterior/mercaderias/${nombre}/${usuario}/${rol}/${sesion}`);
+    }
+
     const regresarAMenu = () => {
         navigate(`/inicio/${usuario}/${sesion}`);
     }
@@ -94,7 +98,7 @@ function ComercioExterior() {
                         <CardOpcion3>
                             <CardOpcionTitulo>Mercadería</CardOpcionTitulo>
                             <figure className='imagen2 imagen-mercaderia'></figure>
-                            <CardBoton>Acceder</CardBoton>
+                            <CardBoton onClick={aMercaderias}>Acceder</CardBoton>
                         </CardOpcion3>
 
                     </EspacioDeOpciones>

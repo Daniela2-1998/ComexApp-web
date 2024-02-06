@@ -1,0 +1,112 @@
+.contenedor-mercaderias{
+    width: 100%;
+}
+
+.titulo-mercaderias{
+    margin-top: 2%;
+    color: #1A1594;
+}
+
+.espacio-botones-merc{
+    height: 80px;
+    width: 70%;
+    margin-left: 15%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.botones-mercaderias{
+    height: 50px;
+    width: 25%;
+    margin-top: 5%;
+    border-radius: 10px !important;
+    border: none;
+    color: #fff;
+}
+
+.agregar-merc{
+    background-color: rgb(42, 165, 42);
+}
+
+.agregar-merc:hover{
+    background-color: rgb(32, 132, 32);
+}
+
+.listado{
+    background-color: rgb(167, 52, 37);
+}
+
+.listado:hover{
+    background-color: rgb(108, 34, 24);
+}
+
+.agregar-cat{
+    background-color: rgb(201, 235, 28);
+}
+
+.agregar-cat:hover{
+    background-color: rgb(150, 175, 21);
+}
+
+.agregar-prov{
+    background-color: rgb(185, 116, 26);
+}
+
+.agregar-prov:hover{
+    background-color: rgb(140, 88, 19);
+}
+
+.catyprov{
+    background-color: rgb(132, 26, 185);
+}
+
+.catyprov:hover{
+    background-color: rgb(82, 17, 115);
+}
+
+
+.espacio-cards{
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-merc{
+    width: 25%;
+    height: 400px;
+    margin-top: 7%;
+    margin-bottom: 5%;
+    border: 5px solid #1A1594;
+    border-radius: 20px;
+    background-color: #242424;
+}
+
+.cartel-producto{
+    color: #fff;
+    margin-top: 3%;
+}
+
+.espacio-descripcion{
+    margin-left: 5%;
+    text-align: left;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.descripcion-producto{
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+
+.categoria{
+    height: 50px;
+    width: 80%;
+    padding: 4%;
+    margin-left: 5%;
+    border-radius: 20px;
+    border: none;
+    text-align: center;
+    background: linear-gradient(0deg, #1A1594, #1A1594 30%,#257cb6);
+}

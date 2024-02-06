@@ -58,17 +58,17 @@ function EditarUsuario() {
     // Función recupero usuario específico.
     const obtenerUsuarioById = async (id) => {
         // Recuperación del usuario según ID.
-        const usuarIoFirebase = await getDoc(doc(db, "usuarios", id));
+        const usuarioFirebase = await getDoc(doc(db, "usuarios", id));
 
         // Si hay usuario, se recupera la información y se la guarda en un estado para usarla en los campos.
-        if (usuarIoFirebase.exists()) {
-            setNombreUsuario(usuarIoFirebase.data().nombre);
-            setMail(usuarIoFirebase.data().mail);
-            setContraseña(usuarIoFirebase.data().contraseña);
-            setCelular(usuarIoFirebase.data().celular);
-            setAños(usuarIoFirebase.data().años);
-            setRolUsuario(usuarIoFirebase.data().rol);
-            setArea(usuarIoFirebase.data().area);
+        if (usuarioFirebase.exists()) {
+            setNombreUsuario(usuarioFirebase.data().nombre);
+            setMail(usuarioFirebase.data().mail);
+            setContraseña(usuarioFirebase.data().contraseña);
+            setCelular(usuarioFirebase.data().celular);
+            setAños(usuarioFirebase.data().años);
+            setRolUsuario(usuarioFirebase.data().rol);
+            setArea(usuarioFirebase.data().area);
         } else {
             console.log("No existe el usuario solicitado.");
         }

@@ -8,8 +8,7 @@ import theme from '../theme';
 // Contenedor del select
 const ContenedorSelect = styled.div`
     height: 40px;
-    width: 100%;
-    margin-left: 6%;
+    width: 82%;
     background: ${theme.grisClaro};
     cursor: pointer;
     border-radius: 10px; 
