@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
+import { Link } from 'react-router-dom';
+
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import '../css/Mercaderias.css';
@@ -12,9 +14,23 @@ import Encabezado from '../components/Encabezado';
 import MenuOpcionesInicio from '../components/MenuOpcionesInicio';
 import BotonRegresar from '../components/BotonRegresar';
 
+import {ContenedorMercaderias, TituloMercaderias, EspacioBotonesMercaderia, BotonesMercaderias, ContenedorCardsMercaderias, 
+    CardMercaderias, NombreMercaderia, ContenedorInformacionMercaderias, DescripcionMercaderias, ContenedorPrecioYStockMercaderias,
+    PrecioYStockMercaderias, EstadoMercaderias, ProveedorMercaderias, CategoriaMercaderias, OpcionesIndividualesMercaderias} from '../components/ElementosMercaderias';
+
+// Import de SweetAlert2 para el modal de alerta de confirmación de eliminación.
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 // Imports firebase
 import { db } from '../firebase/FirebaseConfig';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
+
+
+
+
+// Alerta de confirmación de borrado.
+const MySwal = withReactContent(Swal);
 
 
 
@@ -57,9 +73,49 @@ function MercaderiasInt() {
         );
     }
 
-    useEffect(() => {
+
+
+
+    // Función eliminar registro.
+    const eliminarMercaderia = async (id) => {
+        const documentoMercaderia = doc(db, "mercaderiasInt", id);
+        await deleteDoc(documentoMercaderia);
         obtenerMercaderias();
-    }, [])
+    }
+
+
+
+    
+    // Funcion de confirmacion para Sweet Alert 2.
+    const confirmarEliminar = (id) => {
+        new MySwal({
+            title: "¿Deseas eliminar este producto?",
+            text: "Eliminar es una acción irreversible",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Si, borrar'
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                // Uso de la función para eliminar registro.
+                eliminarMercaderia(id);
+                if(eliminarMercaderia(id)){
+                new MySwal(
+                    '¡Eliminación éxitosa!',
+                    'El registro fue eliminado.',
+                    'success'
+                )
+                }
+
+            }
+        })
+    }
+
+  useEffect(() => {
+    obtenerMercaderias();
+}, [])
 
 
 
@@ -78,60 +134,68 @@ function MercaderiasInt() {
 
                 <MenuOpcionesInicio pasarElRol={rol} />
 
-                <div className='contenedor-mercaderias'>
-                    <h1 className='titulo-mercaderias'>Mercaderias internacionales</h1>
+                <ContenedorMercaderias>
+                    <TituloMercaderias>Mercaderias internacionales</TituloMercaderias>
 
-                    <div className='espacio-botones-merc'>
-                        <button className='botones-mercaderias agregar-merc' onClick={aRegistrarMercaderias}>Agregar mercadería</button>
-                        <button className='botones-mercaderias listado'>Ver listado</button>
+                    <EspacioBotonesMercaderia>
+                        <BotonesMercaderias className='agregar-merc' onClick={aRegistrarMercaderias}>Agregar mercadería</BotonesMercaderias>
+                        <BotonesMercaderias className='listado'>Ver listado</BotonesMercaderias>
                         <BotonRegresar className='botones-mercaderias'>Volver atrás</BotonRegresar>
-                    </div>
+                    </EspacioBotonesMercaderia>
 
-                    <div className='espacio-botones-merc'>
-                        <button className='botones-mercaderias agregar-cat' onClick={aRegistrarCategoria}>Agregar categoría</button>
-                        <button className='botones-mercaderias agregar-prov' onClick={aRegistrarProveedor}>Agregar proveedor</button>
-                        <button className='botones-mercaderias catyprov'>categorias y proveedores</button>
-                    </div>
+                    <EspacioBotonesMercaderia>
+                        <BotonesMercaderias className='agregar-cat' onClick={aRegistrarCategoria}>Agregar categoría</BotonesMercaderias>
+                        <BotonesMercaderias className='agregar-prov' onClick={aRegistrarProveedor}>Agregar proveedor</BotonesMercaderias>
+                        <BotonesMercaderias className='catyprov'>categorias y proveedores</BotonesMercaderias>
+                    </EspacioBotonesMercaderia>
 
 
-                    <div className='espacio-cards'>
-
+                    <ContenedorCardsMercaderias>
                         {mercaderias ?
                             mercaderias.map((mercaderia) => {
 
-
-
                                 return (
-                                    <>
-                                        <div
-                                            className='card-merc'
-                                            key={mercaderia.id}
-                                            data-valor={mercaderia.id}
-                                        >
-                                            <h3 className='cartel-producto'>{mercaderia.producto}</h3>
 
-                                            <div className='espacio-descripcion'>
-                                                <label className='descripcion-producto'>Precio: USD{mercaderia.precio}</label>
-                                                <label className='descripcion-producto'>Disponible: {mercaderia.stock}</label>
-                                                <label className='descripcion-producto'>Estado: {mercaderia.estado}</label>
-                                                <label className='descripcion-producto'>Proveedor: {mercaderia.proveedor}</label>
-                                                <label className='descripcion-producto categoria'>{mercaderia.categoria}</label>
-                                            </div>
-                                        </div>
-                                    </>
+                                    <CardMercaderias
+                                        key={mercaderia.id}
+                                        data-valor={mercaderia.id}
+                                    >
+                                        <NombreMercaderia>{mercaderia.producto}</NombreMercaderia>
+
+                                        <ContenedorInformacionMercaderias>
+                                            <DescripcionMercaderias>{mercaderia.descripcion}</DescripcionMercaderias>
+                                            <ContenedorPrecioYStockMercaderias>
+                                                <PrecioYStockMercaderias>USD {mercaderia.precio}</PrecioYStockMercaderias>
+                                                <PrecioYStockMercaderias>Stock: {mercaderia.stock}</PrecioYStockMercaderias>
+                                            </ContenedorPrecioYStockMercaderias>
+                                            {mercaderia.estado === 'disponible'
+                                                ?
+                                                <EstadoMercaderias className='disponible'>{mercaderia.estado}</EstadoMercaderias>
+                                                :
+                                                <EstadoMercaderias className='sin-stock'>{mercaderia.estado}</EstadoMercaderias>
+                                            }
+
+                                            <ProveedorMercaderias>Proveedor: {mercaderia.proveedor}</ProveedorMercaderias>
+                                            <CategoriaMercaderias>{mercaderia.categoria}</CategoriaMercaderias>
+                                        </ContenedorInformacionMercaderias>
+
+                                        <OpcionesIndividualesMercaderias>
+                                            <Link to={`/comercio-exterior/editar-mercaderias/${usuario}/${nombre}/${rol}/${sesion}/${mercaderia.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
+                                            <button onClick={() => { confirmarEliminar(mercaderia.id) }} className="btn btn-danger"><i className="fa-solid fa-trash"></i></button>
+                                        </OpcionesIndividualesMercaderias>
+                                    </CardMercaderias>
                                 )
                             })
+
                             :
-                            <div className='card-merc'>
-
-                            </div>
+                            ''
                         }
+                    </ContenedorCardsMercaderias>
 
 
-                    </div>
-                </div>
+                </ContenedorMercaderias>
 
-            </ContenedorGeneralInicio>
+            </ContenedorGeneralInicio >
         </>
     )
 }

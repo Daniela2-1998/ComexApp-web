@@ -14,7 +14,6 @@ function SelectEstadoMercaderia({ estado, setEstado }) {
 
   const estados = [
     { id: 'disponible', texto: "Disponible" },
-    { id: 'reservado', texto: "Reservado" },
     { id: 'sin stock', texto: "Sin stock" },
   ];
 

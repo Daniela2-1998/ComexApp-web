@@ -38,6 +38,15 @@ const ContenedorCamposRegistro = styled.div`
   flex-direction: column;
 `;
 
+const ContenedorCamposDescripcionRegistro = styled.div`
+  height: 150px;
+  margin-top: 2%;
+  margin-left: 5%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+`;
+
 const TituloCamposRegistro = styled.label`
   color: #1A1594;
   font-weight: bold;
@@ -46,6 +55,20 @@ const TituloCamposRegistro = styled.label`
 const CamposRegistro = styled.input`
   width: 82%;
   height: 40px;
+  margin-top: 1%;
+  padding: 1%;
+  border-radius: 10px;
+  border: 1px solid #1A1594;
+  color: #1A1594;
+
+  &:placeholder {
+    color: rgb(148, 147, 147);
+  }
+`;
+
+const CamposDescripcionRegistro = styled.textarea`
+  width: 82%;
+  height: 200px;
   margin-top: 1%;
   padding: 1%;
   border-radius: 10px;
@@ -99,5 +122,5 @@ const BotonIngresoRegistro = styled.button`
 `;
 
 
-export {ContenedorFormulario, ContenedorTituloRegistro, FormularioRegistro, ContenedorCamposRegistro, TituloCamposRegistro, 
-  CamposRegistro, EspacioSelectsRegistro, ContenedorBotonesRegistro, BotonIngresoRegistro};
+export {ContenedorFormulario, ContenedorTituloRegistro, FormularioRegistro, ContenedorCamposRegistro, ContenedorCamposDescripcionRegistro, 
+  TituloCamposRegistro, CamposRegistro, CamposDescripcionRegistro, EspacioSelectsRegistro, ContenedorBotonesRegistro, BotonIngresoRegistro};

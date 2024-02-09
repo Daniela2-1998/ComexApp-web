@@ -43,7 +43,7 @@ const Opciones = styled.div`
     top: 40px;
     left: 0;
     width: 100%;
-    border-radius: 10px ; 
+    border-radius: 10px; 
     max-height: 300px; 
     overflow-y: auto;
 `;

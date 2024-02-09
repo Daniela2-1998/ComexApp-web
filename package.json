@@ -17,7 +17,7 @@
     "react-scripts": "5.0.1",
     "save": "^2.9.0",
     "styled-components": "^6.1.6",
-    "sweetalert2": "^11.10.4",
+    "sweetalert2": "^11.10.2",
     "sweetalert2-react-content": "^5.0.7",
     "web-vitals": "^2.1.4"
   },

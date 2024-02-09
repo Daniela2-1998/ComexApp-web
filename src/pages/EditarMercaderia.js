@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 // Imports firebase
 import { db } from '../firebase/FirebaseConfig';
 
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 // Imports estilos
 import {
@@ -25,23 +25,17 @@ import Alerta from '../components/Alerta';
 import '../css/Mercaderias.css';
 
 
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
 
 
-// Alerta de confirmación de borrado.
-const MySwal = withReactContent(Swal);
-
-
-
-
-function RegistrarMercaderia() {
+function EditarMercaderia() {
 
 
   const { usuario } = useParams();
   const { nombre } = useParams();
   const { rol } = useParams();
   const { sesion } = useParams();
+
+  const { id } = useParams();
 
   const [producto, setProducto] = useState('');
   const [stock, setStock] = useState(0);
@@ -63,35 +57,43 @@ function RegistrarMercaderia() {
     navigate(`/comercio-exterior/mercaderias/${nombre}/${usuario}/${rol}/${sesion}`);
   }
 
-  // Función para almacenar producto.
-  const almacenar = async (e) => {
-    e.preventDefault();
+  
+  // Función recupero mercaderia específico.
+  const obtenerMercaderiaById = async (id) => {
+    // Recuperación del mercaderia según ID.
+    const mercaderiaFirebase = await getDoc(doc(db, "mercaderiasInt", id));
 
-    // Verificación de que los campos no estén vacíos.
-    if (producto === '' || stock === '' || precio === '') {
-      cambiarEstadoAlerta(true);
-      cambiarAlerta({
-        tipo: 'error',
-        mensaje: 'Debes completar todos los campos.'
-      });
-      return;
+    // Si hay mercaderia, se recupera la información y se la guarda en un estado para usarla en los campos.
+    if (mercaderiaFirebase.exists()) {
+      setProducto(mercaderiaFirebase.data().producto);
+      setStock(mercaderiaFirebase.data().stock);
+      setPrecio(mercaderiaFirebase.data().precio);
+      setProveedor(mercaderiaFirebase.data().proveedor);
+      SelectCategoria(mercaderiaFirebase.data().categoria);
+      setEstado(mercaderiaFirebase.data().estado);
+      setDescripcion(mercaderiaFirebase.data().descripcion);
+    } else {
+      console.log("No existe la mercadería solicitado.");
     }
-
-
-
-    // Vinculación con los campos.
-    await setDoc(doc(db, "mercaderiasInt", producto), 
-    { producto: producto, stock: stock, precio: precio, proveedor: proveedor, descripcion: descripcion, categoria: categoria, estado: estado });
-
-    new MySwal({
-      title: "Ingreso éxitoso",
-      text: "Producto ingresado al sistema.",
-      icon: "success",
-      button: "aceptar",
-    });
-
-    navigate(`/comercio-exterior/mercaderias/${nombre}/${usuario}/${rol}/${sesion}`);
   }
+
+// La función se ejecuta una única vez al abrir la página.
+useEffect(() => {
+  obtenerMercaderiaById(id)
+}, []);
+
+
+ // Función para actualizar la información de la mercaderia.
+ const actualizarMercaderia = async (e) => {
+  // Evita que se recargue la página en caso de error.
+  e.preventDefault();
+
+  const mercInt = doc(db, "mercaderiasInt", id)
+  const data = { producto: producto, stock: stock, precio: precio, proveedor: proveedor, descripcion: descripcion, categoria: categoria, estado: estado };
+  await updateDoc(mercInt, data);
+  navigate(`/comercio-exterior/mercaderias/${nombre}/${usuario}/${rol}/${sesion}`);
+
+}
 
 
 
@@ -100,17 +102,17 @@ function RegistrarMercaderia() {
     <>
       <HelmetProvider>
         <Helmet>
-          <title>Registrar mercaderías internacionales</title>
+          <title>Modificar mercaderías internacionales</title>
           <link rel='icon' href="../images/logo.png" />
         </Helmet>
       </HelmetProvider>
 
       <ContenedorFormulario id='tamaño-contenedor-formulario-mercaderias'>
         <ContenedorTituloRegistro>
-          <h1>Agregar mercadería exterior</h1>
+          <h1>Modificar mercadería exterior</h1>
         </ContenedorTituloRegistro>
 
-        <FormularioRegistro onSubmit={almacenar} id='tamaño-formulario-mercaderias'>
+        <FormularioRegistro onSubmit={actualizarMercaderia} id='tamaño-formulario-mercaderias'>
 
           <ContenedorCamposRegistro>
             <TituloCamposRegistro>Producto:</TituloCamposRegistro>
@@ -175,7 +177,7 @@ function RegistrarMercaderia() {
 
 
           <ContenedorBotonesRegistro>
-            <BotonIngresoRegistro typeof='submit'>Ingresar</BotonIngresoRegistro>
+            <BotonIngresoRegistro typeof='submit'>Modificar</BotonIngresoRegistro>
             <BotonRegresar onClick={volverAMercaderias}>Volver a mercaderías</BotonRegresar>
           </ContenedorBotonesRegistro>
 
@@ -194,4 +196,4 @@ function RegistrarMercaderia() {
   )
 }
 
-export default RegistrarMercaderia;
+export default EditarMercaderia;
