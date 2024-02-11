@@ -49,6 +49,10 @@ function MercaderiasInt() {
         navigate(`/comercio-exterior/registrar-mercaderias/${nombre}/${usuario}/${rol}/${sesion}`);
     }
 
+    // Función volver atrás.
+    const volverAtras = () => {
+        navigate(`/comercio-exterior/${nombre}/${usuario}/${rol}/${sesion}`);
+    }
 
     const aRegistrarCategoria = () => {
         navigate(`/categoria-producto/${nombre}/${usuario}/${rol}/${sesion}`);
@@ -60,10 +64,14 @@ function MercaderiasInt() {
     }
 
 
+    const aListadoProveedoresYCategorias = () => {
+        navigate(`/listado-proveedores-y-categorias/${nombre}/${usuario}/${rol}/${sesion}`);
+    }
+
 
     const mercaderiasCollection = collection(db, "mercaderiasInt");
 
-    // Función recupero de categorías de Firebase.
+    // Función obtener mercaderías
     const obtenerMercaderias = async () => {
         const data = await getDocs(mercaderiasCollection);
 
@@ -73,10 +81,14 @@ function MercaderiasInt() {
         );
     }
 
+    useEffect(() => {
+        obtenerMercaderias();
+    }, [])
+    
+    
 
 
-
-    // Función eliminar registro.
+    // Función eliminar mercadería
     const eliminarMercaderia = async (id) => {
         const documentoMercaderia = doc(db, "mercaderiasInt", id);
         await deleteDoc(documentoMercaderia);
@@ -113,10 +125,6 @@ function MercaderiasInt() {
         })
     }
 
-  useEffect(() => {
-    obtenerMercaderias();
-}, [])
-
 
 
     return (
@@ -140,13 +148,13 @@ function MercaderiasInt() {
                     <EspacioBotonesMercaderia>
                         <BotonesMercaderias className='agregar-merc' onClick={aRegistrarMercaderias}>Agregar mercadería</BotonesMercaderias>
                         <BotonesMercaderias className='listado'>Ver listado</BotonesMercaderias>
-                        <BotonRegresar className='botones-mercaderias'>Volver atrás</BotonRegresar>
+                        <BotonRegresar className='botones-mercaderias' onClick={volverAtras}>Volver atrás</BotonRegresar>
                     </EspacioBotonesMercaderia>
 
                     <EspacioBotonesMercaderia>
                         <BotonesMercaderias className='agregar-cat' onClick={aRegistrarCategoria}>Agregar categoría</BotonesMercaderias>
                         <BotonesMercaderias className='agregar-prov' onClick={aRegistrarProveedor}>Agregar proveedor</BotonesMercaderias>
-                        <BotonesMercaderias className='catyprov'>categorias y proveedores</BotonesMercaderias>
+                        <BotonesMercaderias className='catyprov' onClick={aListadoProveedoresYCategorias}>Categorias y proveedores</BotonesMercaderias>
                     </EspacioBotonesMercaderia>
 
 
@@ -180,7 +188,7 @@ function MercaderiasInt() {
                                         </ContenedorInformacionMercaderias>
 
                                         <OpcionesIndividualesMercaderias>
-                                            <Link to={`/comercio-exterior/editar-mercaderias/${usuario}/${nombre}/${rol}/${sesion}/${mercaderia.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
+                                            <Link to={`/comercio-exterior/editar-mercaderia/${nombre}/${usuario}/${rol}/${sesion}/${mercaderia.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
                                             <button onClick={() => { confirmarEliminar(mercaderia.id) }} className="btn btn-danger"><i className="fa-solid fa-trash"></i></button>
                                         </OpcionesIndividualesMercaderias>
                                     </CardMercaderias>

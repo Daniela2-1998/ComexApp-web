@@ -22,7 +22,7 @@ import SelectCategoria from '../components/SelectCategoria';
 
 
 
-function RegistrarProveedor() {
+function RegistrarCategoria() {
 
   const { usuario } = useParams();
   const { nombre } = useParams();
@@ -31,9 +31,7 @@ function RegistrarProveedor() {
 
   const { id } = useParams();
 
-  const [proveedor, setProveedor] = useState('');
-  const [pais, setPais] = useState('');
-  const [categoria, setCategoria] = useState('general');
+  const [categoria, setCategoria] = useState('');
   const [estado, setEstado] = useState('');
 
   const navigate = useNavigate();
@@ -47,37 +45,32 @@ function RegistrarProveedor() {
     navigate(`/comercio-exterior/mercaderias/${nombre}/${usuario}/${rol}/${sesion}`);
   }
 
-  // Función recupero proveedor específico.
-  const obtenerProveedorById = async (id) => {
-    // Recuperación del proveedor según ID.
-    const proveedorFirebase = await getDoc(doc(db, "proveedores", id));
+  const obtenerCategoriaById = async (id) => {
+    const categoriaFirebase = await getDoc(doc(db, "categorias", id));
 
-    // Si hay usuario, se recupera la información y se la guarda en un estado para usarla en los campos.
-    if (proveedorFirebase.exists()) {
-        setProveedor(proveedorFirebase.data().proveedor);
-        setPais(proveedorFirebase.data().pais);
-        setCategoria(proveedorFirebase.data().categoria);
-        setEstado(proveedorFirebase.data().estado);
+    if (categoriaFirebase.exists()) {
+        setCategoria(categoriaFirebase.data().categoria);
+        setEstado(categoriaFirebase.data().estado);
     } else {
-        console.log("No existe el proveedor solicitado.");
+        console.log("No existe la categoria solicitado.");
     }
 }
 
 // La función se ejecuta una única vez al abrir la página.
 useEffect(() => {
-    obtenerProveedorById(id)
+   obtenerCategoriaById(id)
 }, []);
 
 
 // Función para actualizar la información del proveedor.
-const actualizarProveedor = async (e) => {
+const actualizarCategoria = async (e) => {
   // Evita que se recargue la página en caso de error.
   e.preventDefault();
 
 
-  const prov = doc(db, "proveedores", id)
-  const data = { proveedor: proveedor, pais: pais, categoria: categoria, estado: estado };
-  await updateDoc(prov, data);
+  const cat = doc(db, "categorias", id)
+  const data = { categoria: categoria, estado: estado };
+  await updateDoc(cat, data);
   navigate(`/comercio-exterior/mercaderias/${nombre}/${usuario}/${rol}/${sesion}`);
 }
 
@@ -87,32 +80,23 @@ const actualizarProveedor = async (e) => {
     <>
       <HelmetProvider>
         <Helmet>
-          <title>Editar proveedor</title>
+          <title>Editar categoria</title>
           <link rel='icon' href="../images/logo.png" />
         </Helmet>
       </HelmetProvider>
 
-      <ContenedorFormulario className='contenedor-proveedores'>
+      <ContenedorFormulario className='contenedor-categorias'>
         <ContenedorTituloRegistro>
-          <h1>Editar proveedor</h1>
+          <h1>Editar categoría</h1>
         </ContenedorTituloRegistro>
 
-        <FormularioRegistro onSubmit={actualizarProveedor}>
+        <FormularioRegistro onSubmit={actualizarCategoria}>
 
           <ContenedorCamposRegistro>
-            <TituloCamposRegistro>Proveedor:</TituloCamposRegistro>
+            <TituloCamposRegistro>Categoría:</TituloCamposRegistro>
             <CamposRegistro
-              value={proveedor}
-              onChange={(e) => setProveedor(e.target.value)}
-              type="text"
-            />
-          </ContenedorCamposRegistro>
-
-          <ContenedorCamposRegistro>
-            <TituloCamposRegistro>País:</TituloCamposRegistro>
-            <CamposRegistro
-              value={pais}
-              onChange={(e) => setPais(e.target.value)}
+              value={categoria}
+              onChange={(e) => setCategoria(e.target.value)}
               type="text"
             />
           </ContenedorCamposRegistro>
@@ -123,14 +107,6 @@ const actualizarProveedor = async (e) => {
               value={estado}
               onChange={(e) => setEstado(e.target.value)}
               type="text"
-            />
-          </ContenedorCamposRegistro>
-
-          <ContenedorCamposRegistro>
-            <TituloCamposRegistro>Categoría:</TituloCamposRegistro>
-            <SelectCategoria
-              categoria={categoria}
-              setCategoria={setCategoria}
             />
           </ContenedorCamposRegistro>
 
@@ -150,8 +126,9 @@ const actualizarProveedor = async (e) => {
       />
 
 
+
     </>
   )
 }
 
-export default RegistrarProveedor;
+export default RegistrarCategoria;

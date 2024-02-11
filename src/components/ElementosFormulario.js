@@ -11,7 +11,6 @@ const ContenedorFormulario = styled.div`
   @media (max-width: 760px) {
     width: 70%;
     margin-left: 15%;
-    background-color: pink;
   }
 `;
 

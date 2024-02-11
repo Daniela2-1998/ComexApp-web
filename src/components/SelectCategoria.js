@@ -10,6 +10,8 @@ import { ContenedorSelect, OpcionSeleccionada, Opciones, Opcion } from './Elemen
 import { db } from '../firebase/FirebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 
+
+
 function SelectCategoria({ categoria, setCategoria }) {
 
   const [mostrarSelect, cambiarMostrarSelect] = useState(false);

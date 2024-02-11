@@ -77,3 +77,9 @@
 .sin-stock{
     background-color: rgb(238, 7, 7);
 }
+
+/* CATEGORÍAS Y PROVEEDORES */
+.boton-volver-mercaderias{
+    margin-left: 37%;
+    margin-bottom: 5%;
+}
