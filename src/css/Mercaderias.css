@@ -44,6 +44,7 @@
     background-color: rgb(108, 34, 24);
 }
 
+
 .agregar-cat{
     background-color: rgb(201, 235, 28);
 }
@@ -88,6 +89,10 @@
 @media (max-width: 900px){
     .boton-volver-mercaderias{
         margin-left: 27%;
+    }
+
+    .botones-mercaderias{
+        width: 30% !important;
     }
 }
 

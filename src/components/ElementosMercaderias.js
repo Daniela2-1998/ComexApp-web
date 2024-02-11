@@ -14,8 +14,16 @@ const EspacioBotonesMercaderia = styled.div`
   height: 80px;
   width: 70%;
   margin-left: 15%;
+  margin-bottom: 2%;
   display: flex;
   justify-content: space-evenly;
+
+  
+  @media (max-width: 900px) {
+    width: 90%;
+    height: 100px;
+    margin-left: 5%;
+  }
 `;
 
 const BotonesMercaderias = styled.div`
@@ -26,6 +34,11 @@ const BotonesMercaderias = styled.div`
   border-radius: 10px !important;
   border: none;
   color: #fff;
+
+  
+  @media (max-width: 900px) {
+    width: 30%;
+  }
 `;
 
 const ContenedorCardsMercaderias = styled.div`
@@ -37,6 +50,13 @@ const ContenedorCardsMercaderias = styled.div`
   grid-gap: 0%;
   grid-template-columns: 15% 15% 15%;
   grid-template-rows: fit-content;
+
+
+    
+  @media (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 
@@ -47,6 +67,12 @@ const CardMercaderias = styled.div`
   border: 5px solid #242424;
   border-radius: 20px;
   background: linear-gradient(0deg, #1A1594, #1A1594 30%,#257cb6);
+
+    
+  @media (max-width: 900px) {
+    width: 50%;
+    margin-left: 25%;
+  }
 `;
 
 const NombreMercaderia = styled.h3`
@@ -78,6 +104,12 @@ const ContenedorPrecioYStockMercaderias = styled.div`
   margin-bottom: 5%;
   display: flex;
   justify-content: space-evenly;
+
+
+  @media (max-width: 1300px) {
+    width: 90%;
+    margin-left: 0%;
+  }
 `;
 
 const PrecioYStockMercaderias = styled.label`
@@ -86,6 +118,11 @@ const PrecioYStockMercaderias = styled.label`
   border-radius: 20px;
   text-align: center;
   background: #242424;
+
+
+  @media (max-width: 1300px) {
+    width: 60%;
+  }
 `;
 
 
