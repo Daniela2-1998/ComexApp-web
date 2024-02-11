@@ -83,3 +83,12 @@
     margin-left: 37%;
     margin-bottom: 5%;
 }
+
+
+@media (max-width: 900px){
+    .boton-volver-mercaderias{
+        margin-left: 27%;
+    }
+}
+
+

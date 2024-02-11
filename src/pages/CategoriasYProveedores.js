@@ -200,11 +200,23 @@ const Subtitulos = styled.h3`
     margin-left: 10%;
     color: #1A1594;
     text-align: left;
+
+
+    @media (max-width: 1000px) {
+        margin-left: 5%;
+    }
 `;
 
 const ContenedorListados = styled.div`
     width: 100%;
     display: flex;
+
+
+    @media (max-width: 850px) {
+        width: 95%;
+        flex-direction: column;
+        margin-left: 5%;
+    }
 `;
 
 const ContenedorListado = styled.div`
@@ -213,6 +225,10 @@ const ContenedorListado = styled.div`
     justify-content: space-around;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 1400px) {
+        margin-left: 0%;
+    }
 `;
 
 const Listado = styled.div`
@@ -236,7 +252,21 @@ const Registro = styled.div`
     justify-content: space-evenly;
     font-weight: bolder;
     box-shadow: 1px 1px 1px 1px;
-`;
+
+
+    @media (max-width: 1400px) {
+        width: 87%;
+    }
+
+    @media (max-width: 1000px) {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    @media (max-width: 700px) {
+        width: 100%;
+    }
+`
 
 const CategoriaDeProveedor = styled.label`
   width: 35%;
