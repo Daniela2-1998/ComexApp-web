@@ -220,6 +220,15 @@ const PrecioStockListado = styled.label`
   text-align: center;
   background: #1A1594;
   color: rgb(231, 229, 229);
+
+
+  @media (max-width: 850px) {
+    width: 50%;
+  }
+
+  @media (max-width: 550px) {
+    width: 80%;
+  }
 `;
 
 
@@ -232,6 +241,11 @@ const EstadoListado = styled.label`
   color: rgb(231, 229, 229);
   font-weight: bold;
   text-transform: capitalize;
+
+
+  @media (max-width: 550px) {
+    width: 70%;
+  }
 `;
 
 export {ContenedorMercaderias, TituloMercaderias, EspacioBotonesMercaderia, BotonesMercaderias, ContenedorCardsMercaderias, 
