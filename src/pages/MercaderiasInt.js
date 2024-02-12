@@ -49,6 +49,10 @@ function MercaderiasInt() {
         navigate(`/comercio-exterior/registrar-mercaderias/${nombre}/${usuario}/${rol}/${sesion}`);
     }
 
+    const aListadoMercaderias = () => {
+        navigate(`/comercio-exterior/listado-mercaderias/${nombre}/${usuario}/${rol}/${sesion}`);
+    }
+
     // Función volver atrás.
     const volverAtras = () => {
         navigate(`/comercio-exterior/${nombre}/${usuario}/${rol}/${sesion}`);
@@ -147,7 +151,7 @@ function MercaderiasInt() {
 
                     <EspacioBotonesMercaderia>
                         <BotonesMercaderias className='agregar-merc' onClick={aRegistrarMercaderias}>Agregar mercadería</BotonesMercaderias>
-                        <BotonesMercaderias className='listado'>Ver listado</BotonesMercaderias>
+                        <BotonesMercaderias className='listado' onClick={aListadoMercaderias}>Ver listado</BotonesMercaderias>
                         <BotonRegresar className='botones-mercaderias' onClick={volverAtras}>Volver atrás</BotonRegresar>
                     </EspacioBotonesMercaderia>
 

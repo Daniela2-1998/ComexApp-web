@@ -158,8 +158,87 @@ const OpcionesIndividualesMercaderias = styled.div`
 `;
 
 
+
+// ELEMENTOS DEL LISTADO
+const ContenedorListado = styled.div`
+  width: 90%;
+  height: fit-content;
+  margin-top: 0%;
+  margin-left: 7%;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Elemento = styled.div`
+  width: 95%;
+  height: fit-content;
+  border-radius: 20px;
+  margin-top: 4%;
+  background: rgb(231, 229, 229);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  
+  text-align: left;
+  padding-left: 3%;
+  border-left: 20px solid #1A1594;
+`;
+
+const TituloMercaderiaListado = styled.h5` 
+  color: #1A1594 !important;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  font-weight: bolder;
+  text-decoration-line: underline;
+`;
+
+const ContenidoListado = styled.div` 
+  width: 60%;
+`;
+
+const DescripcionMercaderiaListado = styled.label` 
+  color: #1A1594;
+  margin-bottom: 2%;
+`;
+
+const ProveedorListado = styled.div` 
+  width: 40%;
+  margin-bottom: 3%;
+  color: #1A1594;
+  font-weight: bolder;
+  text-transform: capitalize;
+`;
+
+const ContenedorPrecioStockListado = styled.div` 
+  width: 60%;
+`;
+
+const PrecioStockListado = styled.label` 
+  width: 30%;
+  padding: 2%;
+  margin-right: 2%;
+  margin-bottom: 3%;
+  border-radius: 20px;
+  text-align: center;
+  background: #1A1594;
+  color: rgb(231, 229, 229);
+`;
+
+
+const EstadoListado = styled.label` 
+  width: 37%;
+  padding: 2%;
+  margin-bottom: 3%;
+  border-radius: 20px;
+  text-align: center;
+  color: rgb(231, 229, 229);
+  font-weight: bold;
+  text-transform: capitalize;
+`;
+
 export {ContenedorMercaderias, TituloMercaderias, EspacioBotonesMercaderia, BotonesMercaderias, ContenedorCardsMercaderias, 
     CardMercaderias, NombreMercaderia, ContenedorInformacionMercaderias, DescripcionMercaderias,
     ContenedorPrecioYStockMercaderias, PrecioYStockMercaderias, EstadoMercaderias, ProveedorMercaderias, CategoriaMercaderias,
-    OpcionesIndividualesMercaderias
+    OpcionesIndividualesMercaderias, 
+
+    ContenedorListado, Elemento, TituloMercaderiaListado, DescripcionMercaderiaListado, ContenidoListado, ProveedorListado,
+    ContenedorPrecioStockListado, PrecioStockListado, EstadoListado
 };
