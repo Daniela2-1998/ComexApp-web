@@ -75,7 +75,7 @@ const CardOpcion1 = styled.div`
 
   @media (max-width: 500px) {
     height: 350px;
-    width: 100%;
+    width: 105%;
   }
 `;
 
@@ -112,7 +112,7 @@ const CardOpcion2 = styled.div`
 
   @media (max-width: 500px) {
     height: 350px;
-    width: 100%;
+    width: 105%;
   }
 `;
 
@@ -148,7 +148,7 @@ const CardOpcion3 = styled.div`
 
   @media (max-width: 500px) {
     height: 350px;
-    width: 100%;
+    width: 105%;
   }
 `;
 

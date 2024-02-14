@@ -21,6 +21,11 @@ const ContenedorTituloRegistro = styled.div`
   border-top-right-radius: 18px;
   background-image: -webkit-linear-gradient(144deg,#1A1594, #1A1594 30%,#257cb6);
   color: #fff;
+
+
+  @media (max-width: 700px) {
+    height: 80px;
+  }
 `;
 
 const FormularioRegistro = styled.form`

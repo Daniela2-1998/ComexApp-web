@@ -73,6 +73,10 @@ const CardMercaderias = styled.div`
     width: 50%;
     margin-left: 25%;
   }
+
+  @media (max-width: 500px) {
+    width: 65%;
+  }
 `;
 
 const NombreMercaderia = styled.h3`
@@ -110,6 +114,12 @@ const ContenedorPrecioYStockMercaderias = styled.div`
     width: 90%;
     margin-left: 0%;
   }
+
+  
+  @media (max-width: 500px) {
+    width: 95%;
+    margin-left: 0%;
+  }
 `;
 
 const PrecioYStockMercaderias = styled.label`
@@ -122,6 +132,11 @@ const PrecioYStockMercaderias = styled.label`
 
   @media (max-width: 1300px) {
     width: 60%;
+  }
+
+  @media (max-width: 500px) {
+    width: 80%;
+    margin-left: 2%;
   }
 `;
 
