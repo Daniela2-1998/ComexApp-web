@@ -69,7 +69,7 @@ function Inicio() {
       <HelmetProvider>
         <Helmet>
           <title>Inicio de {nombre}</title>
-          <link rel='icon' href="../images/logo.png" />
+          <link rel='shortcut icon' href="../images/logo.png" type='image/x-icon' />
         </Helmet>
       </HelmetProvider>
 

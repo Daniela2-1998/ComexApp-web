@@ -140,6 +140,12 @@ const ContenedorLogin = styled.div`
     margin-left: 22%;
   }
 
+  @media (max-width: 600px) {
+    width: 80%;
+    margin-top: 8%;
+    margin-left: 10%;
+  }
+
 `;
 
 
