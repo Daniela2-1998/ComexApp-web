@@ -25,6 +25,10 @@ function ComercioExterior() {
     const navigate = useNavigate();
 
 
+    const aExportadores = () => {
+        navigate(`/comercio-exterior/exportadores/${nombre}/${usuario}/${rol}/${sesion}`);
+    }
+
     const aMercaderias = () => {
         navigate(`/comercio-exterior/mercaderias/${nombre}/${usuario}/${rol}/${sesion}`);
     }
@@ -59,7 +63,7 @@ function ComercioExterior() {
                         <CardOpcion1>
                             <CardOpcionTitulo>Exportadores</CardOpcionTitulo>
                             <figure className='imagen2 imagen-exportadores'></figure>
-                            <CardBoton>Acceder</CardBoton>
+                            <CardBoton onClick={aExportadores}>Acceder</CardBoton>
                         </CardOpcion1>
 
                         <CardOpcion2>

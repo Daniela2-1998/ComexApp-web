@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Inicio from './pages/Inicio';
 import ComercioExterior from './pages/ComercioExterior';
+import Exportadores from './pages/Exportadores';
+import RegistrarParticipanteComex from './pages/RegistrarParticipanteComex';
 import MercaderiasInt from './pages/MercaderiasInt';
 import ListadoMercaderiasInt from './pages/ListadoMercaderiasInt';
 import ComercioNacional from './pages/ComercioNacional';
@@ -24,6 +26,8 @@ import EditarUsuario from './pages/EditarUsuario';
 
 
 
+
+
 function App() {
   return (
     <>
@@ -35,6 +39,9 @@ function App() {
             <Route path='/inicio/:usuario/:sesion' element={<Inicio />} />
 
             <Route path='/comercio-exterior/:nombre/:usuario/:rol/:sesion' element={<ComercioExterior />} />
+
+            <Route path='/comercio-exterior/exportadores/:nombre/:usuario/:rol/:sesion' element={<Exportadores />} />
+            <Route path='/comercio-exterior/registrar/:nombre/:usuario/:rol/:sesion' element={<RegistrarParticipanteComex />} />
             <Route path='/comercio-exterior/mercaderias/:nombre/:usuario/:rol/:sesion' element={<MercaderiasInt />} />
             <Route path='/comercio-exterior/listado-mercaderias/:nombre/:usuario/:rol/:sesion' element={<ListadoMercaderiasInt />} />
             <Route path='/comercio-exterior/registrar-mercaderias/:nombre/:usuario/:rol/:sesion' element={<RegistrarMercaderia />} />
