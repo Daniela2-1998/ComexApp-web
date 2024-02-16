@@ -8,6 +8,7 @@ import ContenedorGeneralInicio from '../components/ContenedorGeneral';
 import Encabezado from '../components/Encabezado';
 import MenuOpcionesInicio from '../components/MenuOpcionesInicio';
 import BotonRegresar from '../components/BotonRegresar';
+import TablaExportadores from '../components/TablaExportadores';
 
 
 
@@ -40,6 +41,8 @@ function Exportadores() {
 
                 <MenuOpcionesInicio pasarElRol={rol} />
                 <h1>Exportadores</h1>
+
+                <TablaExportadores/>
             <BotonRegresar onClick={volverAComex}>Volver a comercio exterior</BotonRegresar>
 
             </ContenedorGeneralInicio>
