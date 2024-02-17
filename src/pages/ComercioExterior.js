@@ -29,6 +29,10 @@ function ComercioExterior() {
         navigate(`/comercio-exterior/exportadores/${nombre}/${usuario}/${rol}/${sesion}`);
     }
 
+    const aImportadores = () => {
+        navigate(`/comercio-exterior/importadores/${nombre}/${usuario}/${rol}/${sesion}`);
+    }
+
     const aMercaderias = () => {
         navigate(`/comercio-exterior/mercaderias/${nombre}/${usuario}/${rol}/${sesion}`);
     }
@@ -69,7 +73,7 @@ function ComercioExterior() {
                         <CardOpcion2>
                             <CardOpcionTitulo>Importadores</CardOpcionTitulo>
                             <figure className='imagen2 imagen-importadores'></figure>
-                            <CardBoton>Acceder</CardBoton>
+                            <CardBoton onClick={aImportadores}>Acceder</CardBoton>
                         </CardOpcion2>
 
                         <CardOpcion3>

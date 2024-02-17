@@ -70,6 +70,13 @@
 }
 
 
+/* Participantes */
+.boton-regresar-participantes{
+    margin-left: 37%;
+    margin-top: 5%;
+    margin-bottom: 7%;
+}
+
 
 @media (max-width: 1100px) {
     
@@ -88,3 +95,8 @@
 }
 
 
+@media (max-width: 500px) {
+    .boton-regresar-participantes {
+        margin-left: 28%;
+    }
+}

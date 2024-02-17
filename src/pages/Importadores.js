@@ -29,14 +29,14 @@ const MySwal = withReactContent(Swal);
 
 
 
-function Exportadores() {
+function Importadores() {
 
     const { usuario } = useParams();
     const { nombre } = useParams();
     const { rol } = useParams();
     const { sesion } = useParams();
 
-    const [exportadores, setExportadores] = useState([]);
+    const [importadores, setImportadores] = useState([]);
 
     const [id, setId] = useState('');
     const [empleado, setEmpleado] = useState('');
@@ -66,24 +66,24 @@ function Exportadores() {
 
     const consulta = query(
         collection(db, 'participantesComex'),
-        where('cargo', '==', 'exportador'),
+        where('cargo', '==', 'importador'),
     );
 
 
     // Función recupero de exportadores de Firebase.
-    const obtenerExportadores = async () => {
+    const obtenerImportadores = async () => {
         const data = await getDocs(consulta);
-        setExportadores(
+        setImportadores(
             data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
         );
     }
 
 
     // Función eliminar registro.
-    const eliminarExportadores = async (id) => {
-        const documentoExportador = doc(db, "participantesComex", id);
-        await deleteDoc(documentoExportador);
-        obtenerExportadores();
+    const eliminarImportadores = async (id) => {
+        const documentoImportador = doc(db, "participantesComex", id);
+        await deleteDoc(documentoImportador);
+        obtenerImportadores();
     }
 
 
@@ -102,7 +102,7 @@ function Exportadores() {
 
             if (result.isConfirmed) {
                 // Uso de la función para eliminar registro.
-                eliminarExportadores(id);
+                eliminarImportadores(id);
                 Swal.fire(
                     '¡Eliminación éxitosa!',
                     'El registro fue eliminado.',
@@ -116,7 +116,7 @@ function Exportadores() {
 
 
     useEffect(() => {
-        obtenerExportadores();
+        obtenerImportadores();
     }, [])
 
 
@@ -135,7 +135,7 @@ function Exportadores() {
                 <Encabezado pasarElRol={rol} />
 
                 <MenuOpcionesInicio pasarElRol={rol} />
-                <Titulo>Exportadores</Titulo>
+                <Titulo>Importadores</Titulo>
 
                 <ContenedorMercaderias>
 
@@ -145,33 +145,33 @@ function Exportadores() {
                     </EspacioBotonesMercaderia>
 
                     <ContenedorCardsParticipantes>
-                        {exportadores ?
-                            exportadores.map((exportador) => {
+                        {importadores ?
+                            importadores.map((importador) => {
 
                                 return (
                                     <CardParticipante
-                                        key={exportador.id}
-                                        data-valor={exportador.id}
+                                        key={importador.id}
+                                        data-valor={importador.id}
                                     >
                                         <ContenedorNombreParticipante>
-                                            <h2>{exportador.empleado}</h2>
+                                            <h2>{importador.empleado}</h2>
                                         </ContenedorNombreParticipante>
 
                                         
                                         <DescripcionParticipante>
-                                            <IDParticipante>ID: {exportador.id}</IDParticipante>
-                                            <InformacionParticipante>Nombre: {exportador.empleado}</InformacionParticipante>
-                                            <InformacionParticipante>Empresa: {exportador.empresa}</InformacionParticipante>
-                                            <InformacionParticipante>Mail: {exportador.mail}</InformacionParticipante>
-                                            <InformacionParticipante>Número: {exportador.telefono}</InformacionParticipante>
-                                            <InformacionParticipante>CUIT: {exportador.CUIT}</InformacionParticipante>
-                                            <InformacionParticipante>País: {exportador.pais}</InformacionParticipante>
-                                            <InformacionParticipante>Productos: {exportador.productos}</InformacionParticipante>
-                                            {exportador.estado === 'activo'
+                                            <IDParticipante>ID: {importador.id}</IDParticipante>
+                                            <InformacionParticipante>Nombre: {importador.empleado}</InformacionParticipante>
+                                            <InformacionParticipante>Empresa: {importador.empresa}</InformacionParticipante>
+                                            <InformacionParticipante>Mail: {importador.mail}</InformacionParticipante>
+                                            <InformacionParticipante>Número: {importador.telefono}</InformacionParticipante>
+                                            <InformacionParticipante>CUIT: {importador.CUIT}</InformacionParticipante>
+                                            <InformacionParticipante>País: {importador.pais}</InformacionParticipante>
+                                            <InformacionParticipante>Productos: {importador.productos}</InformacionParticipante>
+                                            {importador.estado === 'activo'
                                                 ?
-                                                <ParticipanteActivo>{exportador.estado}</ParticipanteActivo>
+                                                <ParticipanteActivo>{importador.estado}</ParticipanteActivo>
                                                 :
-                                                <ParticipanteInactivo>{exportador.estado}</ParticipanteInactivo>
+                                                <ParticipanteInactivo>{importador.estado}</ParticipanteInactivo>
                                             }
                                         </DescripcionParticipante>
                                     </CardParticipante>
@@ -193,4 +193,4 @@ function Exportadores() {
     )
 }
 
-export default Exportadores;
+export default Importadores;
