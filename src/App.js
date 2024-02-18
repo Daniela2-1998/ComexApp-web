@@ -22,6 +22,7 @@ import CategoriasYProveedores from './pages/CategoriasYProveedores';
 import Usuarios from './pages/Usuarios';
 import RegistrarUsuario from './pages/RegistrarUsuario';
 import EditarUsuario from './pages/EditarUsuario';
+import EditarParticipanteComex from './pages/EditarParticipante';
 
 
 
@@ -45,6 +46,7 @@ function App() {
             <Route path='/comercio-exterior/importadores/:nombre/:usuario/:rol/:sesion' element={<Importadores />} />
             <Route path='/comercio-exterior/despachantes/:nombre/:usuario/:rol/:sesion' element={<Despachantes />} />
             <Route path='/comercio-exterior/registrar/:nombre/:usuario/:rol/:sesion' element={<RegistrarParticipanteComex />} />
+            <Route path='/comercio-exterior/editar-participante/:nombre/:usuario/:rol/:sesion/:id' element={<EditarParticipanteComex />} />
             <Route path='/comercio-exterior/mercaderias/:nombre/:usuario/:rol/:sesion' element={<MercaderiasInt />} />
             <Route path='/comercio-exterior/listado-mercaderias/:nombre/:usuario/:rol/:sesion' element={<ListadoMercaderiasInt />} />
             <Route path='/comercio-exterior/registrar-mercaderias/:nombre/:usuario/:rol/:sesion' element={<RegistrarMercaderia />} />

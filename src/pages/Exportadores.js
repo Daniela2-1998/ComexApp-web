@@ -176,7 +176,7 @@ function Exportadores() {
                                         </DescripcionParticipante>
 
                                         <OpcionesIndividualesMercaderias>
-                                            <Link to={`/comercio-exterior/editar-mercaderia/${nombre}/${usuario}/${rol}/${sesion}/${exportador.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
+                                            <Link to={`/comercio-exterior/editar-participante/${nombre}/${usuario}/${rol}/${sesion}/${exportador.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
                                             <button onClick={() => { confirmarEliminar(exportador.id) }} className="btn btn-danger"><i className="fa-solid fa-trash"></i></button>
                                         </OpcionesIndividualesMercaderias>
                                     </CardParticipante>
