@@ -12,8 +12,12 @@ import withReactContent from 'sweetalert2-react-content';
 import { collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebase/FirebaseConfig';
 
-import { Titulo, ContenedorCardsParticipantes, CardParticipante, ContenedorNombreParticipante, DescripcionParticipante, 
-    InformacionParticipante, IDParticipante, ParticipanteActivo, ParticipanteInactivo } from '../components/ElementosParticipantes';
+import {
+    Titulo, ContenedorCardsParticipantes, CardParticipante,
+    ContenedorNombreParticipante, DescripcionParticipante, InformacionParticipante, IDParticipante,
+    ParticipanteActivo, ParticipanteInactivo
+} from '../components/ElementosParticipantes';
+
 import ContenedorGeneralInicio from '../components/ContenedorGeneral';
 import { ContenedorMercaderias, EspacioBotonesMercaderia, OpcionesIndividualesMercaderias, BotonesMercaderias } from '../components/ElementosMercaderias';
 import Encabezado from '../components/Encabezado';
@@ -29,14 +33,14 @@ const MySwal = withReactContent(Swal);
 
 
 
-function Exportadores() {
+function Despachantes() {
 
     const { usuario } = useParams();
     const { nombre } = useParams();
     const { rol } = useParams();
     const { sesion } = useParams();
 
-    const [exportadores, setExportadores] = useState([]);
+    const [despachantes, setDespachantes] = useState([]);
 
     const [id, setId] = useState('');
     const [empleado, setEmpleado] = useState('');
@@ -66,24 +70,24 @@ function Exportadores() {
 
     const consulta = query(
         collection(db, 'participantesComex'),
-        where('cargo', '==', 'exportador'),
+        where('cargo', '==', 'despachante'),
     );
 
 
     // Función recupero de exportadores de Firebase.
-    const obtenerExportadores = async () => {
+    const obtenerDespachantes = async () => {
         const data = await getDocs(consulta);
-        setExportadores(
+        setDespachantes(
             data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
         );
     }
 
 
     // Función eliminar registro.
-    const eliminarExportadores = async (id) => {
-        const documentoExportador = doc(db, "participantesComex", id);
-        await deleteDoc(documentoExportador);
-        obtenerExportadores();
+    const eliminarDespachantes = async (id) => {
+        const documentoDespachantes = doc(db, "participantesComex", id);
+        await deleteDoc(documentoDespachantes);
+        obtenerDespachantes();
     }
 
 
@@ -91,7 +95,7 @@ function Exportadores() {
     // Funcion de confirmacion para Sweet Alert 2.
     const confirmarEliminar = (id) => {
         MySwal.fire({
-            title: '¿Desea eliminar al exportador?',
+            title: '¿Desea eliminar al despachante?',
             text: "Esta acción no se puede revertir.",
             icon: 'warning',
             showCancelButton: true,
@@ -102,7 +106,7 @@ function Exportadores() {
 
             if (result.isConfirmed) {
                 // Uso de la función para eliminar registro.
-                eliminarExportadores(id);
+                eliminarDespachantes(id);
                 Swal.fire(
                     '¡Eliminación éxitosa!',
                     'El registro fue eliminado.',
@@ -116,7 +120,7 @@ function Exportadores() {
 
 
     useEffect(() => {
-        obtenerExportadores();
+        obtenerDespachantes();
     }, [])
 
 
@@ -135,7 +139,7 @@ function Exportadores() {
                 <Encabezado pasarElRol={rol} />
 
                 <MenuOpcionesInicio pasarElRol={rol} />
-                <Titulo>Exportadores</Titulo>
+                <Titulo>Despachantes</Titulo>
 
                 <ContenedorMercaderias>
 
@@ -145,41 +149,43 @@ function Exportadores() {
                     </EspacioBotonesMercaderia>
 
                     <ContenedorCardsParticipantes>
-                        {exportadores ?
-                            exportadores.map((exportador) => {
+                        {despachantes ?
+                            despachantes.map((despachante) => {
 
                                 return (
+
                                     <CardParticipante
-                                        key={exportador.id}
-                                        data-valor={exportador.id}
+                                        key={despachante.id}
+                                        data-valor={despachante.id}
                                     >
                                         <ContenedorNombreParticipante>
-                                            <h2>{exportador.empleado}</h2>
+                                            <h2>{despachante.empleado}</h2>
                                         </ContenedorNombreParticipante>
 
-                                        
+
                                         <DescripcionParticipante>
-                                            <IDParticipante>ID: {exportador.id}</IDParticipante>
-                                            <InformacionParticipante>Nombre: {exportador.empleado}</InformacionParticipante>
-                                            <InformacionParticipante>Empresa: {exportador.empresa}</InformacionParticipante>
-                                            <InformacionParticipante>Mail: {exportador.mail}</InformacionParticipante>
-                                            <InformacionParticipante>Número: {exportador.telefono}</InformacionParticipante>
-                                            <InformacionParticipante>CUIT: {exportador.CUIT}</InformacionParticipante>
-                                            <InformacionParticipante>País: {exportador.pais}</InformacionParticipante>
-                                            <InformacionParticipante>Productos: {exportador.productos}</InformacionParticipante>
-                                            {exportador.estado === 'activo'
+                                            <IDParticipante>ID: {despachante.id}</IDParticipante>
+                                            <InformacionParticipante>Nombre: {despachante.empleado}</InformacionParticipante>
+                                            <InformacionParticipante>Empresa: {despachante.empresa}</InformacionParticipante>
+                                            <InformacionParticipante>Mail: {despachante.mail}</InformacionParticipante>
+                                            <InformacionParticipante>Número: {despachante.telefono}</InformacionParticipante>
+                                            <InformacionParticipante>CUIT: {despachante.CUIT}</InformacionParticipante>
+                                            <InformacionParticipante>País: {despachante.pais}</InformacionParticipante>
+                                            <InformacionParticipante>Productos: {despachante.productos}</InformacionParticipante>
+                                            {despachante.estado === 'activo'
                                                 ?
-                                                <ParticipanteActivo>{exportador.estado}</ParticipanteActivo>
+                                                <ParticipanteActivo>{despachante.estado}</ParticipanteActivo>
                                                 :
-                                                <ParticipanteInactivo>{exportador.estado}</ParticipanteInactivo>
+                                                <ParticipanteInactivo>{despachante.estado}</ParticipanteInactivo>
                                             }
                                         </DescripcionParticipante>
 
                                         <OpcionesIndividualesMercaderias>
-                                            <Link to={`/comercio-exterior/editar-mercaderia/${nombre}/${usuario}/${rol}/${sesion}/${exportador.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
-                                            <button onClick={() => { confirmarEliminar(exportador.id) }} className="btn btn-danger"><i className="fa-solid fa-trash"></i></button>
+                                            <Link to={`/comercio-exterior/editar-participante/${nombre}/${usuario}/${rol}/${sesion}/${despachante.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
+                                            <button onClick={() => { confirmarEliminar(despachante.id) }} className="btn btn-danger"><i className="fa-solid fa-trash"></i></button>
                                         </OpcionesIndividualesMercaderias>
                                     </CardParticipante>
+
                                 )
 
                             })
@@ -198,4 +204,4 @@ function Exportadores() {
     )
 }
 
-export default Exportadores;
+export default Despachantes;

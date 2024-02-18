@@ -15,7 +15,7 @@ import { db } from '../firebase/FirebaseConfig';
 import { Titulo, ContenedorCardsParticipantes, CardParticipante, ContenedorNombreParticipante, DescripcionParticipante, 
     InformacionParticipante, IDParticipante, ParticipanteActivo, ParticipanteInactivo } from '../components/ElementosParticipantes';
 import ContenedorGeneralInicio from '../components/ContenedorGeneral';
-import { ContenedorMercaderias, EspacioBotonesMercaderia, BotonesMercaderias } from '../components/ElementosMercaderias';
+import { ContenedorMercaderias, EspacioBotonesMercaderia, OpcionesIndividualesMercaderias, BotonesMercaderias } from '../components/ElementosMercaderias';
 import Encabezado from '../components/Encabezado';
 import MenuOpcionesInicio from '../components/MenuOpcionesInicio';
 import BotonRegresar from '../components/BotonRegresar';
@@ -91,7 +91,7 @@ function Importadores() {
     // Funcion de confirmacion para Sweet Alert 2.
     const confirmarEliminar = (id) => {
         MySwal.fire({
-            title: '¿Desea eliminar al exportador?',
+            title: '¿Desea eliminar al importador?',
             text: "Esta acción no se puede revertir.",
             icon: 'warning',
             showCancelButton: true,
@@ -174,6 +174,11 @@ function Importadores() {
                                                 <ParticipanteInactivo>{importador.estado}</ParticipanteInactivo>
                                             }
                                         </DescripcionParticipante>
+
+                                        <OpcionesIndividualesMercaderias>
+                                            <Link to={`/comercio-exterior/editar-mercaderia/${nombre}/${usuario}/${rol}/${sesion}/${importador.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
+                                            <button onClick={() => { confirmarEliminar(importador.id) }} className="btn btn-danger"><i className="fa-solid fa-trash"></i></button>
+                                        </OpcionesIndividualesMercaderias>
                                     </CardParticipante>
                                 )
 

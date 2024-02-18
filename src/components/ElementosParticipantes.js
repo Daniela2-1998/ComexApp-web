@@ -48,6 +48,7 @@ const CardParticipante = styled.div`
   }
 `;
 
+
 const ContenedorNombreParticipante = styled.div`
    height: 50px;
    background: linear-gradient(0deg, #1A1594, #1A1594 30%,#257cb6);
@@ -116,5 +117,5 @@ const ParticipanteInactivo = styled.label`
 
 
 
-export {Titulo, ContenedorCardsParticipantes, CardParticipante, ContenedorNombreParticipante, DescripcionParticipante, 
-   InformacionParticipante, IDParticipante, ParticipanteActivo, ParticipanteInactivo};
+export {Titulo, ContenedorCardsParticipantes,  CardParticipante, ContenedorNombreParticipante, 
+  DescripcionParticipante, InformacionParticipante, IDParticipante, ParticipanteActivo, ParticipanteInactivo};
