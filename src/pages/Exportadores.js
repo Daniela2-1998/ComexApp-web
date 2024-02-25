@@ -14,6 +14,7 @@ import { db } from '../firebase/FirebaseConfig';
 
 import { Titulo, ContenedorCardsParticipantes, CardParticipante, ContenedorNombreParticipante, DescripcionParticipante, 
     InformacionParticipante, IDParticipante, ParticipanteActivo, ParticipanteInactivo } from '../components/ElementosParticipantes';
+    
 import ContenedorGeneralInicio from '../components/ContenedorGeneral';
 import { ContenedorMercaderias, EspacioBotonesMercaderia, OpcionesIndividualesMercaderias, BotonesMercaderias } from '../components/ElementosMercaderias';
 import Encabezado from '../components/Encabezado';

@@ -16,6 +16,7 @@ function SelectParticipanteComex({ participante, setParticipante }) {
     { id: 'exportador', texto: "exportador" },
     { id: 'importador', texto: "importador" },
     { id: 'despachante', texto: "despachante" },
+    { id: 'logistica', texto: "logistica" },
     { id: 'agente de carga', texto: "agente de carga" },
   ];
 

@@ -1,0 +1,23 @@
+.tamaño-contenedor-opciones{
+    margin-top: 1% !important;
+}
+
+.imagen-terrestre{
+    background-image: url("../images/terrestre.jpg");
+}
+
+.imagen-maritimo{
+    background-image: url("../images/maritimo.jpg");
+}
+
+.imagen-aereo{
+    background-image: url("../images/aereo.jpg");
+    width: 90%;
+    margin-left: 5%;
+}
+
+.boton-logistica-regresar{
+    margin-top: -3% !important;
+    margin-bottom: 2%;
+    background-color: rgba(47, 47, 47, 0.87);
+}

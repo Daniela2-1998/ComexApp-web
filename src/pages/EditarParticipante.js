@@ -10,7 +10,6 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 // Imports estilos
 import styled from 'styled-components';
-import '../css/Participantes.css';
 
 // Imports componentes
 import { FormularioRegistro, TituloCamposRegistro, ContenedorBotonesRegistro, BotonIngresoRegistro } from '../components/ElementosFormulario';

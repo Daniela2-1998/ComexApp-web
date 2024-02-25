@@ -9,6 +9,8 @@ import Exportadores from './pages/Exportadores';
 import Importadores from './pages/Importadores';
 import Despachantes from './pages/Despachantes';
 import RegistrarParticipanteComex from './pages/RegistrarParticipanteComex';
+import LogisticaInt from './pages/LogisticaInt';
+import Maritimo from './pages/Maritimo';
 import MercaderiasInt from './pages/MercaderiasInt';
 import ListadoMercaderiasInt from './pages/ListadoMercaderiasInt';
 import ComercioNacional from './pages/ComercioNacional';
@@ -23,6 +25,8 @@ import Usuarios from './pages/Usuarios';
 import RegistrarUsuario from './pages/RegistrarUsuario';
 import EditarUsuario from './pages/EditarUsuario';
 import EditarParticipanteComex from './pages/EditarParticipante';
+import ConsultarLogistica from './pages/ConsultarLogistica';
+
 
 
 
@@ -47,6 +51,10 @@ function App() {
             <Route path='/comercio-exterior/despachantes/:nombre/:usuario/:rol/:sesion' element={<Despachantes />} />
             <Route path='/comercio-exterior/registrar/:nombre/:usuario/:rol/:sesion' element={<RegistrarParticipanteComex />} />
             <Route path='/comercio-exterior/editar-participante/:nombre/:usuario/:rol/:sesion/:id' element={<EditarParticipanteComex />} />
+            <Route path='/comercio-exterior/logistica/:nombre/:usuario/:rol/:sesion' element={<LogisticaInt />} />
+            <Route path='/comercio-exterior/logistica/maritimo/:nombre/:usuario/:rol/:sesion' element={<Maritimo />} />
+            <Route path='/comercio-exterior/logistica-consulta/:nombre/:usuario/:rol/:sesion' element={<ConsultarLogistica />} />
+
             <Route path='/comercio-exterior/mercaderias/:nombre/:usuario/:rol/:sesion' element={<MercaderiasInt />} />
             <Route path='/comercio-exterior/listado-mercaderias/:nombre/:usuario/:rol/:sesion' element={<ListadoMercaderiasInt />} />
             <Route path='/comercio-exterior/registrar-mercaderias/:nombre/:usuario/:rol/:sesion' element={<RegistrarMercaderia />} />

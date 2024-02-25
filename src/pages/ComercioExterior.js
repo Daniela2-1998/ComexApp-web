@@ -37,6 +37,10 @@ function ComercioExterior() {
         navigate(`/comercio-exterior/despachantes/${nombre}/${usuario}/${rol}/${sesion}`);
     }
 
+    const aTransportes = () => {
+        navigate(`/comercio-exterior/logistica/${nombre}/${usuario}/${rol}/${sesion}`);
+    }
+
     const aMercaderias = () => {
         navigate(`/comercio-exterior/mercaderias/${nombre}/${usuario}/${rol}/${sesion}`);
     }
@@ -98,7 +102,7 @@ function ComercioExterior() {
                         <CardOpcion1>
                             <CardOpcionTitulo>Transportes</CardOpcionTitulo>
                             <figure className='imagen2 imagen-logistica'></figure>
-                            <CardBoton>Acceder</CardBoton>
+                            <CardBoton onClick={aTransportes}>Acceder</CardBoton>
                         </CardOpcion1>
 
                         <CardOpcion2>

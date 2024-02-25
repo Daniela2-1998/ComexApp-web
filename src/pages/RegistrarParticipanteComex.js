@@ -10,11 +10,11 @@ import { doc, setDoc } from 'firebase/firestore';
 
 // Imports estilos
 import styled from 'styled-components';
-import '../css/Participantes.css';
 
 // Imports componentes
 import { FormularioRegistro, TituloCamposRegistro, ContenedorBotonesRegistro, BotonIngresoRegistro } from '../components/ElementosFormulario';
 import SelectParticipanteComex from '../components/SelectParticipanteComex';
+import SelectLogistica from '../components/SelectLogistica';
 import SelectEstadoParticipante from '../components/SelectEstadoParticipante';
 import BotonRegresar from '../components/BotonRegresar';
 import Alerta from '../components/Alerta';
@@ -43,8 +43,10 @@ function RegistrarParticipanteComex() {
     const [CUIT, setCUIT] = useState('');
     const [pais, setPais] = useState('');
     const [productosAsociados, setProductosAsociados] = useState('');
+    const [requisitos, setRequisitos] = useState('');
     
     const [participante, setParticipante] = useState('exportador');
+    const [transporte, setTransporte] = useState('no corresponde');
     const [estado, setEstado] = useState('activo');
 
     const [estadoAlerta, cambiarEstadoAlerta] = useState(false);
@@ -87,7 +89,8 @@ function RegistrarParticipanteComex() {
 
         // Vinculación con los campos.
         await setDoc(doc(db, "participantesComex", id),
-            { empleado: empleado, empresa: empresa, cargo: participante, mail: mail, telefono: telefono, CUIT: CUIT, pais: pais, productos: productosAsociados, estado: estado });
+            { empleado: empleado, empresa: empresa, cargo: participante, mail: mail, telefono: telefono, CUIT: CUIT, 
+                pais: pais, productos: productosAsociados, requisitos: requisitos, medio: transporte, estado: estado });
 
         new MySwal({
             title: "Ingreso éxitoso",
@@ -204,6 +207,23 @@ function RegistrarParticipanteComex() {
                             </ContenedorCamposRegistroParticipantes>
 
                             <ContenedorCamposRegistroParticipantes>
+                                <TituloCamposRegistro>Requisitos:</TituloCamposRegistro>
+                                <CampoParticipante
+                                    value={requisitos}
+                                    onChange={(e) => setRequisitos(e.target.value)}
+                                    type="text"
+                                />
+                            </ContenedorCamposRegistroParticipantes>
+
+                            <ContenedorCamposRegistroParticipantes>
+                                <TituloCamposRegistro>Medio:</TituloCamposRegistro>
+                                <SelectLogistica
+                                    transporte={transporte}
+                                    setTransporte={setTransporte}
+                                />
+                            </ContenedorCamposRegistroParticipantes>
+
+                            <ContenedorCamposRegistroParticipantes>
                                 <TituloCamposRegistro>Estado:</TituloCamposRegistro>
                                 <SelectEstadoParticipante
                                     estado={estado}
@@ -247,18 +267,18 @@ const ContenedorGeneralRegistroParticipante = styled.div`
 
 const ContenedorRegistroParticipante = styled.div`
     width: 70%;
-    height: 1150px;
+    height: 1350px;
 `;
 
 const FondoColorParticipantes = styled.div`
     width: 30%;
-    height: 1150px;
+    height: 1350px;
     background: linear-gradient(0deg, #1A1594, #1A1594 30%,#257cb6);
 `;
 
 const FormularioParticipantes = styled.div`
    width: 70%;
-   height: 1050px;
+   height: 1250px;
    margin-top: 2%;
    margin-left: 7%;
    border: 2px solid #1A1594;
