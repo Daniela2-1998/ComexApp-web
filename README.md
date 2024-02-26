@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+<h1 align="center"> ComexApp versión web </h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> [!IMPORTANT]\
+> Actualmente, el README y el proyecto se encuentran en desarrollo por lo que podrán encontrar secciones sin funcionalidad y descripción faltante.
+> En este README encontrarán información relativa al proyecto, su estructura, funcionalidad y formas de implementación y de visualización.
 
-## Available Scripts
+## Descripción del proyecto:
+ComexApp web es la versión web de un software desarrollador en 2022. Ambas versiones buscan facilitar las operaciones y los registros necesarios para que las empresas dedicadas al comercio internacional 
+y/o nacional puedan agilizar sus tareas del día a día. El objetivo de ComexApp web es que las empresas puedan, a partir de un usuario con un rol en específico pueda acceder a determinadas funciones y 
+gestionar el negocio junto a sus tareas. Es un sistema web moderno, con una interfaz visual atractiva e intuitiva para los usuarios, de forma tal que la navegación resulte una experiencia sencilla y 
+fácil para todo el mundo.
 
-In the project directory, you can run:
+### Roles:
+* **Administrador**: tiene las mismas funciones que un **empleado**, pero de momento, también incluye secciones y posibilidades adicionales, como poder administrar usuarios.
+* **Empleado**: cumple el resto de las funciones no exclusivas para el **administrador**, las cuáles podrás encontrar más abajo en la sección correspondiente.
 
-### `npm start`
+## Tecnologías usadas:
+* HTML
+* CSS
+* Bootstrap
+* Javascript
+* React
+* Firebase
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+El proyecto se creó con React desde la consola con el comando:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+npx create-react-app comexApp-web
+```
 
-### `npm test`
+Posteriormente, se ingresó en la carpeta creada para volver a abrir la consola e instalar los siguientes paquetes para poder ser usados en el proyecto:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+// Instalación de Firebase.
+npm install firebase
 
-### `npm run build`
+// Instalación del React Router Dom.
+npm react-router-dom
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+// Instalación de Helmet para título e icono del navegador.
+npm i react-helmet-async
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+// Instalación de Bootstrap para el uso de estilos con React.
+npm i bootstrap
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+// Instalación de styled-components para poder crear componentes React con CSS.
+npm install styled-components
 
-### `npm run eject`
+// Instalación de SweetAlert2 para la creación de mensajes de alerta.
+npm install -- save sweetalert2 sweetalert2-react-content
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+// Instalación de FontAwesome para usar con React.
+npm install --save @fortawesome/react-fontawesome
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+// Instalación de react-player para los videos.
+npm install react-player --save
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Adicionalmente, se creó un link para poder tener acceso a iconos y logos de FontAwesome, el cuál se colocó dentro de la ruta **"/public/index.html"**, en la parte correspondiente a la etiqueta <head></head>. El código utilizado es el siguiente:
 
-## Learn More
+```
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+Por otro lado, para mantener la privacidad de la conexión a la base de datos de Firebase, se utilizó un archivo **.env.local** que es utilizado por el archivo **FirebaseConfig.js** para realizar la conexión a la base de datos correspondiente.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Funciones:
+- [X] Inicio de sesión con usuario y contraseña.
+- [X] Creación de registros para las tablas de la base de datos en Firestore y registro de mails y contraseñas para la creación de usuarios con Authentication.
+- [X] Inicio con retorno del rol del usuario.
+- [X] Sección de comercio internacional para gestión de exportadores, importadores, despachantes, agentes de carga, logística, contenedores y mercaderías. Permite visualización de registros,
+consultas individuales, ingreso, modificación y eliminación de cada registro, creación de categorías y proveedores. 
+- [ ] Sección de comercio nacional para la gestión de compradores, vendedores, proveedores, transporte, suministros y mercaderías.
+- [ ] Sección de operaciones para la gestión de operaciones nacionales e internacionales y vinculación de stock con vendedor y contenedor, registro de cada operación, estado de cada viaje, seguimiento de
+la logística, consultas y filtros de busqueda.
+- [ ] Sección de stock general para la gestión de todos los productos de la empresa.
+- [X] Sección de usuarios para la administración de los usuarios de forma apropiada y responsable. Únicamente disponible para los **administradores**.
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Deploy:
+Podes visitar el proyecto en el siguiente link: https://comexapp-251c2.web.app
