@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import { FormularioRegistro, TituloCamposRegistro, ContenedorBotonesRegistro, BotonIngresoRegistro } from '../components/ElementosFormulario';
 import SelectParticipanteComex from '../components/SelectParticipanteComex';
 import SelectEstadoParticipante from '../components/SelectEstadoParticipante';
+import SelectLogistica from '../components/SelectLogistica';
 import BotonRegresar from '../components/BotonRegresar';
 import Alerta from '../components/Alerta';
 
@@ -43,8 +44,10 @@ function EditarParticipanteComex() {
     const [CUIT, setCUIT] = useState('');
     const [pais, setPais] = useState('');
     const [productosAsociados, setProductosAsociados] = useState('');
+    const [requisitos, setRequisitos] = useState('');
     
     const [participante, setParticipante] = useState('exportador');
+    const [transporte, setTransporte] = useState('no corresponde');
     const [estado, setEstado] = useState('activo');
 
     const [estadoAlerta, cambiarEstadoAlerta] = useState(false);
@@ -71,8 +74,9 @@ function EditarParticipanteComex() {
             setCUIT(participanteFirebase.data().CUIT);
             setPais(participanteFirebase.data().pais);
             setProductosAsociados(participanteFirebase.data().productos);
-            setParticipante(participanteFirebase.data().participante);
-            setEstado(participanteFirebase.data().estado);
+            setParticipante(participanteFirebase.data().cargo);
+            setTransporte(participanteFirebase.data().medio);
+            setRequisitos(participanteFirebase.data().requisitos);
         } else {
             console.log("No existe el participante solicitado.");
         }
@@ -201,6 +205,23 @@ function EditarParticipanteComex() {
                             </ContenedorCamposRegistroParticipantes>
 
                             <ContenedorCamposRegistroParticipantes>
+                                <TituloCamposRegistro>Requisitos:</TituloCamposRegistro>
+                                <CampoParticipante
+                                    value={requisitos}
+                                    onChange={(e) => setRequisitos(e.target.value)}
+                                    type="text"
+                                />
+                            </ContenedorCamposRegistroParticipantes>
+
+                            <ContenedorCamposRegistroParticipantes>
+                                <TituloCamposRegistro>Medio:</TituloCamposRegistro>
+                                <SelectLogistica
+                                    transporte={transporte}
+                                    setTransporte={setTransporte}
+                                />
+                            </ContenedorCamposRegistroParticipantes>
+
+                            <ContenedorCamposRegistroParticipantes>
                                 <TituloCamposRegistro>Estado:</TituloCamposRegistro>
                                 <SelectEstadoParticipante
                                     estado={estado}
@@ -244,18 +265,18 @@ const ContenedorGeneralRegistroParticipante = styled.div`
 
 const ContenedorRegistroParticipante = styled.div`
     width: 70%;
-    height: 1150px;
+    height: 1250px;
 `;
 
 const FondoColorParticipantes = styled.div`
     width: 30%;
-    height: 1150px;
+    height: 1250px;
     background: linear-gradient(0deg, #1A1594, #1A1594 30%,#257cb6);
 `;
 
 const FormularioParticipantes = styled.div`
    width: 70%;
-   height: 1050px;
+   height: 1150px;
    margin-top: 2%;
    margin-left: 7%;
    border: 2px solid #1A1594;

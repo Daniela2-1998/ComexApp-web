@@ -318,5 +318,5 @@ const CampoParticipante = styled.input`
 `;
 
 
-
+export {ContenedorCamposRegistroParticipantes, CampoParticipante};
 export default RegistrarParticipanteComex;

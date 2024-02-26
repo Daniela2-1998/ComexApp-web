@@ -10,21 +10,34 @@ import { db } from '../firebase/FirebaseConfig';
 
 import styled from 'styled-components';
 
+import '../css/Logistica.css';
+
 import Encabezado from '../components/Encabezado';
 import MenuOpcionesInicio from '../components/MenuOpcionesInicio';
 import { Titulo } from '../components/ElementosParticipantes';
+import { OpcionesIndividualesMercaderias, BotonesMercaderias }from '../components/ElementosMercaderias';
+import { DevolucionConsulta, EmpresaConsulta, ContenedorRespuestaConsulta, NombreCampoConsulta, LabelConsulta, LabelActivoConsulta, LabelInactivoConsulta } from './ConsultarLogistica';
 import BotonRegresar from '../components/BotonRegresar';
 
 
+// Import de SweetAlert2 para el modal de alerta de confirmación de eliminación.
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
-function ConsultarLogistica() {
+
+// Alerta de confirmación de borrado.
+const MySwal = withReactContent(Swal);
+
+
+
+function MaritimasRegistradas() {
 
     const { usuario } = useParams();
     const { nombre } = useParams();
     const { rol } = useParams();
     const { sesion } = useParams();
 
-    const [compañia, setCompañia] = useState([]);
+    const [compañias, setCompañias] = useState([]);
 
     const [id, setId] = useState('');
     const [empleado, setEmpleado] = useState('');
@@ -38,29 +51,59 @@ function ConsultarLogistica() {
     const [participante, setParticipante] = useState('exportador');
     const [estado, setEstado] = useState('activo');
 
-    const [solicitud, setSolicitud] = useState('');
-
     const navigate = useNavigate();
 
     const consulta = query(
         collection(db, 'participantesComex'),
-        where('empresa', '==', solicitud),
         where('cargo', '==', "logistica"),
+        where('medio', '==', "marítimo"),
     );
 
-    const obtenerParticipante = async () => {
+    const obtenerParticipantes = async () => {
         const data = await getDocs(consulta);
-        setCompañia(
+        setCompañias(
             data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
         );
     }
 
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        obtenerParticipante();
+    useEffect(() => {
+        obtenerParticipantes();
+    }, [])
+
+
+    const eliminarMaritima = async (id) => {
+        const documentoMar = doc(db, "participantesComex", id);
+        await deleteDoc(documentoMar);
+        obtenerParticipantes();
     }
 
+
+
+    // Funcion de confirmacion para Sweet Alert 2.
+    const confirmarEliminar = (id) => {
+        MySwal.fire({
+            title: '¿Desea eliminar la marítima?',
+            text: "Esta acción no se puede revertir.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Eliminar'
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                // Uso de la función para eliminar registro.
+                eliminarMaritima(id);
+                Swal.fire(
+                    '¡Eliminación éxitosa!',
+                    'El registro fue eliminado.',
+                    'success'
+                )
+
+            }
+        })
+    }
 
     const aMaritimo = () => {
         navigate(`/comercio-exterior/logistica/maritimo/${nombre}/${usuario}/${rol}/${sesion}`);
@@ -75,25 +118,14 @@ function ConsultarLogistica() {
                 </Helmet>
             </HelmetProvider>
 
-            <div>
-                <Encabezado pasarElRol={rol} />
-                <MenuOpcionesInicio pasarElRol={rol} />
+            <Encabezado pasarElRol={rol} />
+            <MenuOpcionesInicio pasarElRol={rol} />
 
-                <Titulo>¿Qué empresa marítima buscas?</Titulo>
-                <form onSubmit={handleSubmit}>
-                    <InputConsulta
-                        type="text"
-                        placeholder='Ingresa el nombre de la empresa'
-                        value={solicitud}
-                        onChange={(e) => setSolicitud(e.target.value)}
-                    />
-                    <BotonConsulta>Consultar</BotonConsulta>
-                </form>
-            </div>
+            <Titulo>Listado de marítimas</Titulo>
 
 
-            {compañia ?
-                compañia.map((comp) => {
+            {compañias ?
+                compañias.map((comp) => {
 
                     return (
                         <DevolucionConsulta
@@ -147,6 +179,10 @@ function ConsultarLogistica() {
                                 <LabelConsulta>{comp.requisitos}</LabelConsulta>
                             </ContenedorRespuestaConsulta>
 
+                            <OpcionesIndividualesMercaderias>
+                                <Link to={`/comercio-exterior/editar-participante/${nombre}/${usuario}/${rol}/${sesion}/${comp.id}`} className="icono btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
+                                <button onClick={() => { confirmarEliminar(comp.id) }} className="btn btn-danger"><i className="fa-solid fa-trash"></i></button>
+                            </OpcionesIndividualesMercaderias>
 
                             {comp.estado === 'activo'
                                 ?
@@ -154,7 +190,10 @@ function ConsultarLogistica() {
                                 :
                                 <LabelInactivoConsulta>{comp.estado}</LabelInactivoConsulta>
                             }
+
+
                         </DevolucionConsulta>
+
                     )
 
                 })
@@ -162,159 +201,11 @@ function ConsultarLogistica() {
                 :
                 ''
             }
-            <BotonRegresar onClick={aMaritimo}>Volver a marítima</BotonRegresar>
+            <BotonRegresar className='boton-logistica-regresar' onClick={aMaritimo}>Volver a marítima</BotonRegresar>
 
         </>
     )
 }
 
-
-
-
-const InputConsulta = styled.input`
-   width: 20%;
-   height: 50px;
-   margin-top: 2%;
-   color: #1A1594;
-   border-top-left-radius: 20px;
-   border-bottom-left-radius: 20px;
-   border: 1px solid #1A1594;
-   padding: 1.5%;
-   font-weight: normal;
- 
-
-    &:placeholder{
-       color: #1A1594;
-    }
-
-    &:active{
-      color: #1A1594;
-    }
-
-
-    @media(max-width: 1000px){
-        width: 40%;
-    }
-
-    @media(max-width: 800px){
-        width: 50%;
-    }
-
-    @media(max-width: 600px){
-        width: 55%;
-    }
-
-    @media(max-width: 500px){
-        width: 58%;
-    }
-`;
-
-const BotonConsulta = styled.button`
-    width: 10%;
-    height: 50px;
-    color: #1A1594;
-    background-color: #fff;
-    font-weight: bold;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border: 1px solid #1A1594;
-
-    &:hover{
-       background-color: #eaeaea;
-    }
-
-
-    @media(max-width: 1000px){
-        width: 20%;
-    }
-
-    @media(max-width: 600px){
-        width: 30%;
-    }
-`;
-
-const DevolucionConsulta = styled.div`
-    width: 45%;
-    height: fit-content;
-    margin-top: 3%;
-    margin-left: 28%;
-    margin-bottom: 4%;
-    border-bottom: 20px solid #1A1594;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-
-
-    @media(max-width: 1000px){
-        width: 55%;
-        margin-left: 22%;
-    }
-    
-    @media(max-width: 700px){
-        width: 70%;
-        margin-left: 15%;
-    }
-
-    @media(max-width: 500px){
-        width: 80%;
-        margin-left: 10%;
-    }
-`;
-
-const EmpresaConsulta = styled.h2`
-    height: 50px;
-    padding: 1%;
-    background-color: #1A1594;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-`;
-
-const ContenedorRespuestaConsulta = styled.div`
-    display: flex;
-    margin-left: 5%;
-    margin-bottom: 2%;
-`;
-
-const NombreCampoConsulta = styled.label`
-    height: 30px;
-    width: 20%;
-    padding: 0.5%;
-    margin-right: 5%;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    color: #fff;
-    background-color: #1A1594;
-
-
-    @media(max-width: 1000px){
-        width: 25%;
-    }
-
-    
-    @media(max-width: 700px){
-        width: 30%;
-    }
-`;
-
-const LabelConsulta = styled.label`
-    color: #1A1594;
-    font-weight: normal;
-    text-align: left;
-    margin-right: 2%;
-`;
-
-const LabelActivoConsulta = styled.label`
-    background-color: rgb(3, 133, 3);
-    color: #fff;
-    text-align: center;
-`;
-
-const LabelInactivoConsulta = styled.label`
-    background-color: rgb(238, 7, 7);
-    color: #fff;
-`;
-
-export { DevolucionConsulta, EmpresaConsulta, ContenedorRespuestaConsulta, NombreCampoConsulta, LabelConsulta, LabelActivoConsulta, LabelInactivoConsulta };
-export default ConsultarLogistica;
+export default MaritimasRegistradas;
 

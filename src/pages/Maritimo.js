@@ -21,6 +21,8 @@ function Maritimo() {
     const { rol } = useParams();
     const { sesion } = useParams();
 
+    const [medio, setMedio] = useState('marítimo');
+
     const navigate = useNavigate();
 
     
@@ -28,13 +30,25 @@ function Maritimo() {
       navigate(`/comercio-exterior/registrar/${nombre}/${usuario}/${rol}/${sesion}`);
     }
 
+    const aListado = () => {
+      navigate(`/comercio-exterior/logistica-listado/${nombre}/${usuario}/${rol}/${sesion}`);
+    }
+
+
     const aConsultarParticipante = () => {
       navigate(`/comercio-exterior/logistica-consulta/${nombre}/${usuario}/${rol}/${sesion}`);
     }
 
+    const aRequisitosGenerales = () => {
+      navigate(`/comercio-exterior/requisitos/${medio}/${nombre}/${usuario}/${rol}/${sesion}`);
+    }
+
+
     const volverATransporte = () => {
         navigate(`/comercio-exterior/logistica/${nombre}/${usuario}/${rol}/${sesion}`);
     }
+
+
 
     return (
         <>
@@ -66,9 +80,9 @@ function Maritimo() {
 
                         <TituloOpciones>Opciones disponibles:</TituloOpciones>
                         <BotonTransporte onClick={aRegistrarParticipante}>Registrar</BotonTransporte>
-                        <BotonTransporte>Ver información</BotonTransporte>
+                        <BotonTransporte onClick={aListado}>Ver información</BotonTransporte>
                         <BotonTransporte onClick={aConsultarParticipante}>Consultar</BotonTransporte>
-                        <BotonTransporte>Requisitos generales</BotonTransporte>
+                        <BotonTransporte onClick={aRequisitosGenerales} pasarMedio={medio}>Requisitos generales</BotonTransporte>
                         <BotonTransporte onClick={volverATransporte}>Volver a transporte</BotonTransporte>
 
                     </ContenedorOpciones>
