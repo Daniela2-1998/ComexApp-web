@@ -67,11 +67,16 @@ function RequisitosGeneralesLogistica() {
         obtenerRequisitos();
     }, [])
 
-
-
-    const aMaritimo = () => {
-        navigate(`/comercio-exterior/logistica/maritimo/${nombre}/${usuario}/${rol}/${sesion}`);
+    const atras = () => {
+        if (medio === 'terrestre') {
+            navigate(`/comercio-exterior/logistica/terrestre/${nombre}/${usuario}/${rol}/${sesion}`);
+        } else if (medio === 'marítimo') {
+            navigate(`/comercio-exterior/logistica/maritimo/${nombre}/${usuario}/${rol}/${sesion}`);
+        } else if (medio === 'aereo'){
+            navigate(`/comercio-exterior/logistica/aereo/${nombre}/${usuario}/${rol}/${sesion}`);
+        }
     }
+
 
     const almacenar = async (e) => {
         e.preventDefault();
@@ -113,7 +118,7 @@ function RequisitosGeneralesLogistica() {
                 <Encabezado pasarElRol={rol} />
                 <MenuOpcionesInicio pasarElRol={rol} />
 
-                <Titulo>Requisitos general marítimas:</Titulo>
+                <Titulo>Requisitos general {medio}:</Titulo>
 
                 <FormularioRegistro onSubmit={almacenar}>
 
@@ -148,7 +153,7 @@ function RequisitosGeneralesLogistica() {
 
                     <ContenedorBotonesRequisitos>
                         <BotonRegresar typeof='submit'>Registrar</BotonRegresar>
-                        <BotonRegresar onClick={aMaritimo}>Volver a marítimo</BotonRegresar>
+                        <BotonRegresar onClick={atras}>Volver a {medio}</BotonRegresar>
                     </ContenedorBotonesRequisitos>
 
                 </FormularioRegistro>

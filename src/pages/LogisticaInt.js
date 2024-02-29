@@ -23,10 +23,19 @@ function LogisticaInt() {
 
   const navigate = useNavigate();
 
+  const aTerrestre = () => {
+    navigate(`/comercio-exterior/logistica/terrestre/${nombre}/${usuario}/${rol}/${sesion}`);
+  }
+
   const aMaritimo = () => {
     navigate(`/comercio-exterior/logistica/maritimo/${nombre}/${usuario}/${rol}/${sesion}`);
   }
   
+  const aAereo = () => {
+    navigate(`/comercio-exterior/logistica/aereo/${nombre}/${usuario}/${rol}/${sesion}`);
+  }
+  
+
   // Función volver atrás.
   const volverAComex = () => {
     navigate(`/comercio-exterior/${nombre}/${usuario}/${rol}/${sesion}`);
@@ -56,7 +65,7 @@ function LogisticaInt() {
             <CardOpcion1>
               <CardOpcionTitulo>Terrestre</CardOpcionTitulo>
               <figure className='imagen2 imagen-terrestre'></figure>
-              <CardBoton>Acceder</CardBoton>
+              <CardBoton onClick={aTerrestre}>Acceder</CardBoton>
             </CardOpcion1>
 
             <CardOpcion2>
@@ -68,7 +77,7 @@ function LogisticaInt() {
             <CardOpcion3>
               <CardOpcionTitulo>Aereo</CardOpcionTitulo>
               <figure className='imagen2 imagen-aereo'></figure>
-              <CardBoton>Acceder</CardBoton>
+              <CardBoton onClick={aAereo}>Acceder</CardBoton>
             </CardOpcion3>
 
           </EspacioDeOpciones>

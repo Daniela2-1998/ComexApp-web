@@ -23,6 +23,7 @@ function ConsultarLogistica() {
     const { nombre } = useParams();
     const { rol } = useParams();
     const { sesion } = useParams();
+    const { medio } = useParams();
 
     const [compañia, setCompañia] = useState([]);
 
@@ -62,8 +63,14 @@ function ConsultarLogistica() {
     }
 
 
-    const aMaritimo = () => {
-        navigate(`/comercio-exterior/logistica/maritimo/${nombre}/${usuario}/${rol}/${sesion}`);
+    const atras = () => {
+        if (medio === 'terrestre') {
+            navigate(`/comercio-exterior/logistica/terrestre/${nombre}/${usuario}/${rol}/${sesion}`);
+        } else if (medio === 'marítimo') {
+            navigate(`/comercio-exterior/logistica/maritimo/${nombre}/${usuario}/${rol}/${sesion}`);
+        } else if (medio === 'aereo'){
+            navigate(`/comercio-exterior/logistica/aereo/${nombre}/${usuario}/${rol}/${sesion}`);
+        }
     }
 
     return (
@@ -79,7 +86,8 @@ function ConsultarLogistica() {
                 <Encabezado pasarElRol={rol} />
                 <MenuOpcionesInicio pasarElRol={rol} />
 
-                <Titulo>¿Qué empresa marítima buscas?</Titulo>
+
+         <Titulo>¿Qué empresa de {medio} buscas?</Titulo>
                 <form onSubmit={handleSubmit}>
                     <InputConsulta
                         type="text"
@@ -162,7 +170,7 @@ function ConsultarLogistica() {
                 :
                 ''
             }
-            <BotonRegresar onClick={aMaritimo}>Volver a marítima</BotonRegresar>
+            <BotonRegresar onClick={atras}>Volver a {medio}</BotonRegresar>
 
         </>
     )

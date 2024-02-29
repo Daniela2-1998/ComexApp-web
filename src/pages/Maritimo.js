@@ -31,12 +31,11 @@ function Maritimo() {
     }
 
     const aListado = () => {
-      navigate(`/comercio-exterior/logistica-listado/${nombre}/${usuario}/${rol}/${sesion}`);
+      navigate(`/comercio-exterior/logistica-listado/${medio}/${nombre}/${usuario}/${rol}/${sesion}`);
     }
 
-
     const aConsultarParticipante = () => {
-      navigate(`/comercio-exterior/logistica-consulta/${nombre}/${usuario}/${rol}/${sesion}`);
+      navigate(`/comercio-exterior/logistica-consulta/${medio}/${nombre}/${usuario}/${rol}/${sesion}`);
     }
 
     const aRequisitosGenerales = () => {
@@ -47,6 +46,7 @@ function Maritimo() {
     const volverATransporte = () => {
         navigate(`/comercio-exterior/logistica/${nombre}/${usuario}/${rol}/${sesion}`);
     }
+
 
 
 
@@ -82,7 +82,7 @@ function Maritimo() {
                         <BotonTransporte onClick={aRegistrarParticipante}>Registrar</BotonTransporte>
                         <BotonTransporte onClick={aListado}>Ver información</BotonTransporte>
                         <BotonTransporte onClick={aConsultarParticipante}>Consultar</BotonTransporte>
-                        <BotonTransporte onClick={aRequisitosGenerales} pasarMedio={medio}>Requisitos generales</BotonTransporte>
+                        <BotonTransporte onClick={aRequisitosGenerales}>Requisitos generales</BotonTransporte>
                         <BotonTransporte onClick={volverATransporte}>Volver a transporte</BotonTransporte>
 
                     </ContenedorOpciones>
